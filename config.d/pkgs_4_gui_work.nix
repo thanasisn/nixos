@@ -11,6 +11,7 @@
     mate.caja-with-extensions
     ncview
     rstudio
+    font-manager
     sqlitebrowser
     thunderbird    
     xfce.xfce4-appfinder
