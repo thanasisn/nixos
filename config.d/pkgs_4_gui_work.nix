@@ -6,6 +6,7 @@
 {
   environment.systemPackages = with pkgs; [
     adwaita-qt
+    libsForQt5.dolphin
     cdo
     conky
     diffpdf
@@ -15,9 +16,13 @@
     font-manager
     geany
     gnome.adwaita-icon-theme
+    gnome.simple-scan
+    gpsbabel
     graphviz
     gthumb
+    hdfview
     jabref
+    josm
     kst
     libreoffice
     libsForQt5.kate
