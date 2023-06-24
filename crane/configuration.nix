@@ -31,7 +31,8 @@
 
   # Enable network manager applet
   programs.nm-applet.enable = true;
-  # Enable zsh for system
+  
+# Enable zsh for system
   programs.zsh.enable = true;
 
   # Set your time zone.
@@ -61,7 +62,7 @@
 
   # Enable the LXQT Desktop Environment.
   services.xserver.displayManager.lightdm.enable = true;
-  services.xserver.desktopManager.lxqt.enable = true;
+  services.xserver.desktopManager.lxqt.enable    = true;
 
   # Configure keymap in X11
   services.xserver = {

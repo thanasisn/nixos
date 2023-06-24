@@ -5,14 +5,16 @@
 {
   environment.systemPackages = with pkgs; [
     btrfs-progs
+    coreutils
     curl
     ddrescue
     encfs
     fdupes
     git
+    gnugrep
     gnupg
+    gnused
     gocryptfs
-    grep
     htop
     iftop
     ipset
@@ -20,16 +22,13 @@
     mc
     ncdu
     nmap
-    openssh-client
+    openssh
     rmlint
     rsync
-    sed
     shellcheck
     smartmontools
-    ssh
     sshfs
     sudo
-    tee
     testdisk
     tinc
     tmux 

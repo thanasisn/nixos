@@ -4,7 +4,7 @@
 { pkgs, ... }:
 { 
   environment.systemPackages = with pkgs; [
-    fail2ban
+    # fail2ban
   ];
 
   services.fail2ban = {
