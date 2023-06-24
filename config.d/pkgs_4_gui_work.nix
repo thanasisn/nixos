@@ -5,37 +5,41 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    adwaita-icon-theme
     adwaita-qt
-    font-manager
-    gthumb
-    jabref
-    libreoffice
-    lxappearance
-    mate.caja-with-extensions
-    ncview
-    oxygen-icon-theme
-    oxygencursors
-    qt5ct
-    rclone-browser
-    rstudio
-    spyder3
-    sqlitebrowser
-    thunderbird    
-    xfce.xfce4-appfinder
-    zotero
+    cdo
     conky
     diffpdf
+    dunst
     evince
+    evolution
+    font-manager
+    geany
+    gnome.adwaita-icon-theme
     graphviz
-    meld
-    okular
-    viking
+    gthumb
+    jabref
     kst
+    libreoffice
+    libsForQt5.kate
+    libsForQt5.okular
+    libsForQt5.oxygen-icons5
+    libsForQt5.qt5ct
+    lxappearance
+    mate.caja-with-extensions
+    meld
+    ncview
+    oxygenfonts
+    rclone-browser
     recoll
     regexxer
-    rkward
+    rstudio
     searchmonkey
+    spyder
     sqlitebrowser
+    thunderbird    
+    viking
+    xfce.xfce4-appfinder
+    zathura
+    zotero
   ];
 }
