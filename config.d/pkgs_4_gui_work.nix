@@ -8,6 +8,7 @@
     adwaita-qt
     libsForQt5.dolphin
     cdo
+    regextester
     conky
     diffpdf
     dunst
@@ -23,7 +24,7 @@
     hdfview
     jabref
     josm
-    kst
+    # kst
     libreoffice
     libsForQt5.kate
     libsForQt5.okular
@@ -36,9 +37,9 @@
     oxygenfonts
     rclone-browser
     recoll
-    regexxer
+    # regexxer
     rstudio
-    searchmonkey
+    # searchmonkey
     spyder
     sqlitebrowser
     thunderbird    

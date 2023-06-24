@@ -4,17 +4,16 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    arp
+    # arp
     aspell
-    aspell-el
-    aspell-en
+    aspellDicts.el
+    aspellDicts.en
     astyle
-    autofs
+    autofs5
     autojump
     bash
     bash-completion
     bat
-    batcat
     bc
     biber
     borgbackup
@@ -34,14 +33,11 @@
     fstrcmp
     fzf
     git
-    git-gui
     gitg
-    gitk
+    git-cola
     glances
     gnuplot
-    gnuplot-data
-    gnuplot-qt
-    gnuplot-tex
+    gnuplot_qt
     hddtemp
     hdparm
     hexcurse
@@ -50,22 +46,17 @@
     imagemagick
     lf
     lfs
-    libimage-exiftool-perl
-    librsvg2-bin
-    lm-sensors
+    exiftool
+    lm_sensors
     lshw
     mc
     mediainfo
     molly-guard
     moreutils
-    myspell-el-gr
-    myspell-en-us
     nano
-    ncal
     ncdu
     nmap
     ntp
-    ntpdate
     pandoc
     pdftk
     pv
@@ -74,18 +65,17 @@
 #     python3-ephem
 #     python3-pip
 #     python3-zmq
-    r-base
+    R
     rar
     rclone
     rename
     rmlint
     rofi
     rsync
-    rxvt-unicode-256color
+    rxvt-unicode
     shellcheck
-    similarity-tester
     smartmontools
-    source-highlight
+    highlight
     sxhkd
     timelimit
     tinc
@@ -94,7 +84,7 @@
     trash-cli
     tree
     unison
-    unrar-free
+    unrar
     untex
     usbutils
     xdo
