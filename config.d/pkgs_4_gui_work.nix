@@ -5,17 +5,37 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
+    adwaita-icon-theme
+    adwaita-qt
+    font-manager
     gthumb
     jabref
     libreoffice
+    lxappearance
     mate.caja-with-extensions
     ncview
+    oxygen-icon-theme
+    oxygencursors
+    qt5ct
+    rclone-browser
     rstudio
-    font-manager
+    spyder3
     sqlitebrowser
     thunderbird    
     xfce.xfce4-appfinder
     zotero
-    rclone-browser
+    conky
+    diffpdf
+    evince
+    graphviz
+    meld
+    okular
+    viking
+    kst
+    recoll
+    regexxer
+    rkward
+    searchmonkey
+    sqlitebrowser
   ];
 }
