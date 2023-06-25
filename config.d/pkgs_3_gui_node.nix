@@ -11,5 +11,7 @@
     gparted
     keepassxc
     arandr
+    gitg
+    git-cola
   ];
 }

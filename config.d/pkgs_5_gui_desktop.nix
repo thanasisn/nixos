@@ -9,19 +9,8 @@
     evolution
     golden-cheetah-bin
 
-dia
 doxygen
 doxygen-gui
-fonts-dejavu
-fonts-dejavu-core
-fonts-dejavu-extra
-fonts-firacode
-fonts-liberation
-fonts-liberation2
-fonts-linuxlibertine
-fonts-lmodern
-fonts-noto
-fonts-unifont
 gparted
 gpicview
 gpsbabel
@@ -29,8 +18,6 @@ gwenview
 i3lock
 kde-config-gtk-style
 kde-config-gtk-style-preview
-keepassx
-libreoffice
 libreoffice-l10n-el
 python3-i3ipc
 qgis

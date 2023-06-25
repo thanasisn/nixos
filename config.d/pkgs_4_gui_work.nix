@@ -10,6 +10,7 @@
     cdo
     regextester
     conky
+    dia
     diffpdf
     dunst
     evince

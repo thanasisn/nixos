@@ -33,8 +33,6 @@
     fstrcmp
     fzf
     git
-    gitg
-    git-cola
     glances
     gnuplot
     gnuplot_qt
