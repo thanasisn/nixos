@@ -5,10 +5,11 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
+    # kst
+    # regexxer
+    # searchmonkey
     adwaita-qt
-    libsForQt5.dolphin
     cdo
-    regextester
     conky
     dia
     diffpdf
@@ -25,8 +26,8 @@
     hdfview
     jabref
     josm
-    # kst
     libreoffice
+    libsForQt5.dolphin
     libsForQt5.kate
     libsForQt5.okular
     libsForQt5.oxygen-icons5
@@ -35,15 +36,15 @@
     mate.caja-with-extensions
     meld
     ncview
+    nix-software-center
     oxygenfonts
     rclone-browser
     recoll
-    # regexxer
+    regextester
     rstudio
-    # searchmonkey
     spyder
     sqlitebrowser
-    thunderbird    
+    thunderbird
     viking
     xfce.xfce4-appfinder
     zathura

@@ -24,4 +24,10 @@
     LC_TIME           = "en_DK.UTF-8";
   };
 
+  # Configure keymap in X11
+  services.xserver = {
+    layout     = "us,el";
+    xkbVariant = "";
+  };
+
 }
