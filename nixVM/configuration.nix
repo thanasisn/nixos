@@ -32,8 +32,8 @@
 
   # Enable network manager applet
   programs.nm-applet.enable = true;
-  
-# Enable zsh for system
+
+  # Enable zsh for system
   programs.zsh.enable = true;
 
   # Set your time zone.
