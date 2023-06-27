@@ -14,6 +14,7 @@
       ./config.d/pkgs_2_cli_extensive.nix  # extra cli functionality
       ./config.d/pkgs_3_gui_node.nix       # bagic gui tools
       ./config.d/pkgs_4_gui_work.nix       # basis staff
+      # ./config.d/pkgs_R_general.nix
     ];
 
   # Bootloader.

@@ -36,7 +36,7 @@
     mate.caja-with-extensions
     meld
     ncview
-    nix-software-center
+    # nix-software-center
     oxygenfonts
     rclone-browser
     recoll

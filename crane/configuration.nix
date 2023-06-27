@@ -8,11 +8,13 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./config.d/common_options.nix        # common options for all
       ./config.d/pkgs_0_cli_basic.nix      # basic cli tools
       ./config.d/pkgs_1_netsec.nix         # network security
       ./config.d/pkgs_2_cli_extensive.nix  # extra cli functionality
       ./config.d/pkgs_3_gui_node.nix       # bagic gui tools
       ./config.d/pkgs_4_gui_work.nix       # basis staff
+      # ./config.d/pkgs_R_general.nix
     ];
 
   # Bootloader.
@@ -31,31 +33,9 @@
 
   # Enable network manager applet
   programs.nm-applet.enable = true;
-  
-# Enable zsh for system
+
+  # Enable zsh for system
   programs.zsh.enable = true;
-
-  # Set your time zone.
-  time.timeZone = "Europe/Athens";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LANG              = "en_US.UTF-8";
-    LC_ADDRESS        = "el_GR.UTF-8";
-    LC_COLLATE        = "en_US.UTF-8";
-    LC_CTYPE          = "en_US.UTF-8";
-    LC_IDENTIFICATION = "el_GR.UTF-8";
-    LC_MEASUREMENT    = "el_GR.UTF-8";
-    LC_MESSAGES       = "en_US.UTF-8";
-    LC_MONETARY       = "el_GR.UTF-8";
-    LC_NAME           = "el_GR.UTF-8";
-    LC_NUMERIC        = "C.UTF-8";
-    LC_PAPER          = "el_GR.UTF-8";
-    LC_TELEPHONE      = "el_GR.UTF-8";
-    LC_TIME           = "en_DK.UTF-8";
-  };
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -63,12 +43,6 @@
   # Enable the LXQT Desktop Environment.
   services.xserver.displayManager.lightdm.enable = true;
   services.xserver.desktopManager.lxqt.enable    = true;
-
-  # Configure keymap in X11
-  services.xserver = {
-    layout     = "us,el";
-    xkbVariant = "";
-  };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -115,8 +89,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
+    vim
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
