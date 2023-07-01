@@ -14,7 +14,7 @@
       ./config.d/pkgs_2_cli_extensive.nix  # extra cli functionality
       ./config.d/pkgs_3_gui_node.nix       # bagic gui tools
       ./config.d/pkgs_4_gui_work.nix       # basis staff
-      # ./config.d/pkgs_R_general.nix
+      ./config.d/pkgs_R_general.nix
     ];
 
   # Bootloader.
@@ -115,6 +115,8 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+
+
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
