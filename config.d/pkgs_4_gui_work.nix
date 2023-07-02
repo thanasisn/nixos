@@ -37,6 +37,7 @@
     meld
     ncview
     # nix-software-center
+    arrow-cpp
     oxygenfonts
     rclone-browser
     recoll

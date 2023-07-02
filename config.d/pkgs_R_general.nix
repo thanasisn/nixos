@@ -1,31 +1,32 @@
+## Global R packages 
+{ config, lib, pkgs, ... }:
 
-## an environment for R that contains libraries
-
-## This works
-{ config, pkgs, ... }: 
-
-{
-    nixpkgs.config.packageOverrides = super: let self = super.pkgs; in
-    {
-        rEnv = super.rWrapper.override 
-        {
-            packages = 
-                with self.rPackages; 
-                [ 
-                    devtools
-                    distr
-                    ggplot2
-                    lubridate
-                ];
-        };
-    };
-
-    environment = 
-	{
-		systemPackages = 
-			with pkgs;
-			[
-                rEnv
-            ];
-    };
+let myRPackages = with pkgs.rPackages;
+  [
+    xfun
+    data_table
+#    arrow
+    arsenal
+    compareDF
+    doMC
+    dplyr
+    foreach
+    funr
+    Hmisc
+    htmlwidgets
+    knitr
+    lubridate
+    optparse
+    pander
+    plotly
+    renv
+    rmarkdown
+    shiny
+    tidyr
+  ];
+in {
+  environment.systemPackages = with pkgs; [
+    (rWrapper.override       { packages = myRPackages; } )
+    (rstudioWrapper.override { packages = myRPackages; } )
+  ];
 }

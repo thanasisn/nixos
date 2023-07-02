@@ -71,18 +71,17 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.athan = {
     isNormalUser = true;
-    description = "athan";
-    extraGroups = [ "networkmanager" "wheel" ];
+    description  = "athan";
+    extraGroups  = [ "networkmanager" "wheel" ];
     shell        = pkgs.zsh;
-    packages = with pkgs; [
-      firefox
-    #  thunderbird
+    packages     = with pkgs; [
+      thunderbird
     ];
   };
 
   # Enable automatic login for the user.
   services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = "athan";
+  services.xserver.displayManager.autoLogin.user   = "athan";
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;

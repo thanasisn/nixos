@@ -24,6 +24,7 @@
     nmap
     openssh
     rmlint
+    pkg-config
     rsync
     shellcheck
     smartmontools
