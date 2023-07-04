@@ -10,6 +10,7 @@
     gnome.gnome-disk-utility
     gparted
     keepassxc
+    brave
     arandr
     gitg
     git-cola

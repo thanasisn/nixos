@@ -3,16 +3,18 @@
 
 let myRPackages = with pkgs.rPackages;
   [
-    xfun
-    data_table
-#    arrow
+    Hmisc
+    RNetCDF
+    arrow
     arsenal
+    caTools                                                                    
     compareDF
+    data_table
     doMC
     dplyr
+    filelock
     foreach
     funr
-    Hmisc
     htmlwidgets
     knitr
     lubridate
@@ -23,6 +25,7 @@ let myRPackages = with pkgs.rPackages;
     rmarkdown
     shiny
     tidyr
+    xfun
   ];
 in {
   environment.systemPackages = with pkgs; [

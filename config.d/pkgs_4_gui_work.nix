@@ -6,11 +6,14 @@
 {
   environment.systemPackages = with pkgs; [
     # kst
+    # nix-software-center
     # regexxer
     # searchmonkey
     adwaita-qt
+    arrow-cpp
     cdo
     conky
+    czkawka
     dia
     diffpdf
     dunst
@@ -36,9 +39,8 @@
     mate.caja-with-extensions
     meld
     ncview
-    # nix-software-center
-    arrow-cpp
     oxygenfonts
+    qalculate-gtk
     rclone-browser
     recoll
     regextester
