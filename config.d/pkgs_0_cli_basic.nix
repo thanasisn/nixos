@@ -19,12 +19,13 @@
     iftop
     ipset
     lm_sensors
+    magic-wormhole
     mc
     ncdu
     nmap
     openssh
-    rmlint
     pkg-config
+    rmlint
     rsync
     shellcheck
     smartmontools
