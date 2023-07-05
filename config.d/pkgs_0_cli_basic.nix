@@ -24,6 +24,7 @@
     ncdu
     nmap
     openssh
+    rmlint
     pkg-config
     rmlint
     rsync

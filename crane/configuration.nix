@@ -82,6 +82,10 @@
   services.xserver.displayManager.autoLogin.enable = true;
   services.xserver.displayManager.autoLogin.user   = "athan";
 
+  services.xserver.desktopManager.budgie.enable    = true;
+  services.xserver.windowManager.i3.enable         = true;
+  services.xserver.windowManager.i3.package        = pkgs.i3-gaps;
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -89,6 +93,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     vim
+    sops
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -102,10 +107,9 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  #services.openssh.enable = true;
   services.openssh = {
     enable                   = true;
-    settings.PermitRootLogin = "yes";
+    settings.PermitRootLogin = "no";
   };
 
   # Open ports in the firewall.
@@ -113,8 +117,6 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
-
-
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
