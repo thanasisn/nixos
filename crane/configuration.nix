@@ -6,19 +6,23 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+    [ 
+      ./hardware-configuration.nix         # results of the hardware scan
       ./config.d/common_options.nix        # common options for all
+      ./config.d/tinc.nix
       ./config.d/pkgs_0_cli_basic.nix      # basic cli tools
       ./config.d/pkgs_1_netsec.nix         # network security
       ./config.d/pkgs_2_cli_extensive.nix  # extra cli functionality
       ./config.d/pkgs_3_gui_node.nix       # bagic gui tools
-      ./config.d/pkgs_4_gui_work.nix       # basis staff
-      ./config.d/pkgs_R_general.nix
-    ];
+      ./config.d/pkgs_4_gui_work.nix       # basic staff for work
+      # ./config.d/pkgs_5_gui_desktop.nix    # my full desktop
+      ./config.d/pkgs_R_general.nix        # my R libraries
+      # ./config.d/pkgs_texlive.nix          # my R libraries
+      "${builtins.fetchTarball "https://github.com/Mic92/sops-nix/archive/master.tar.gz"}/modules/sops" 
+   ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.enable      = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "crane"; # Define your hostname.
@@ -81,7 +85,7 @@
   # Enable automatic login for the user.
   services.xserver.displayManager.autoLogin.enable = true;
   services.xserver.displayManager.autoLogin.user   = "athan";
-
+  ## there is option for default desktop sellection
   services.xserver.desktopManager.budgie.enable    = true;
   services.xserver.windowManager.i3.enable         = true;
   services.xserver.windowManager.i3.package        = pkgs.i3-gaps;
@@ -93,7 +97,6 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     vim
-    sops
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -116,7 +119,7 @@
 
   ## change key binds
   services.xserver.xkbOptions = "caps:swapescape";
-  console.useXkbConfig = true;
+  console.useXkbConfig        = true;
 
   # Open ports in the firewall.
   ## for tinc
@@ -132,5 +135,22 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
+
+
+
+  # This will add secrets.yml to the nix store
+  # You can avoid this by adding a string to the full path instead, i.e.
+  # sops.defaultSopsFile = "/root/.sops/secrets/example.yaml";
+  sops.defaultSopsFile = "/etc/nixos/secrets/example.yaml";
+  # This will automatically import SSH keys as age keys
+  sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+  # This is using an age key that is expected to already be in the filesystem
+  sops.age.keyFile = "/root/.config/sops/age/keys.txt";
+  # This will generate a new key if the key specified above does not exist
+  sops.age.generateKey   = true;
+  sops.validateSopsFiles = false;
+  # This is the actual specification of the secrets.
+  sops.secrets.example-key = {};
+  sops.secrets."myservice/my_subdir/my_secret" = {};
 
 }
