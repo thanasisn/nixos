@@ -105,6 +105,8 @@
   # };
 
   # List services that you want to enable:
+  
+  system.autoUpgrade.enable = true;
 
   # Enable the OpenSSH daemon.
   services.openssh = {
@@ -112,9 +114,14 @@
     settings.PermitRootLogin = "no";
   };
 
+  ## change key binds
+  services.xserver.xkbOptions = "caps:swapescape";
+  console.useXkbConfig = true;
+
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
+  ## for tinc
+  networking.firewall.allowedUDPPorts = [ 655 ];
+  networking.firewall.allowedTCPPorts = [ 655 ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 

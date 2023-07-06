@@ -7,12 +7,13 @@
    ./fonts.nix
 ];
   environment.systemPackages = with pkgs; [
+    arandr
+    autorandr
+    brave
+    git-cola
+    gitg
     gnome.gnome-disk-utility
     gparted
     keepassxc
-    brave
-    arandr
-    gitg
-    git-cola
   ];
 }
