@@ -1,7 +1,6 @@
 
 { config, pkgs, ...}:
 
-
 let
 
   nixVm_T_ip   = "10.12.12.88";
@@ -56,11 +55,12 @@ in {
       # PrivateKeyFile        = "/root/secrets/heinz/rsa_key.priv"
     '';
     hosts = {
-      # content of hosts_heinz (from above)
+
+#        cat ${sops.secrets."tinc_cosmos/nixVM/rsakey".path}
       nixVM = ''
 
         Subnet = 10.12.12.88
-
+         
         -----BEGIN RSA PUBLIC KEY-----
         MIICCgKCAgEA3JlzQd8FnWuuHR8Y8WD1vcrggZv2b4b104vjbI4W2P3o3AjKQ0LC
         /eTVl56wh5AJNKAGjPkmfv9g3kNyfbmqrbPNOzdXEQ3b3JJCDSfDs0JD71tKEeHf
@@ -76,7 +76,7 @@ in {
         -----END RSA PUBLIC KEY-----
 
         '';
-      # content of hosts_peter (from above)
+
       sagan = ''
 
         ## sagan ##
@@ -114,3 +114,4 @@ in {
   };
 
 }
+
