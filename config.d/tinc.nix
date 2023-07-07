@@ -10,6 +10,8 @@ let
   myMeshName = "cosmos";
 
 in {
+  sops.secrets."nixVM/tinc_${myMeshName}/rsapriv" = {};
+  sops.secrets."nixVM/tinc_${myMeshName}/rsapub"  = {};
 
   # simple interface setup
   # ----------------------
@@ -28,31 +30,39 @@ in {
   #         /run/wrappers/bin/sudo ${pkgs.nettools}/bin/ifconfig $INTERFACE down
   #     '';
   # };
-
+  # security.sudo.extraRules = [
+  #   {
+  #     users    = [ "tinc.${myMeshName}" ];
+  #     commands = [
+  #       {
+  #         command  = "${pkgs.nettools}/bin/ifconfig";
+  #         options  = [ "NOPASSWD" ];
+  #       }
+  #     ];
+  #   }
+  # ];
 
 
   # configure tinc service
   # ----------------------
   services.tinc.networks."${myMeshName}"= {
 
-    name          = "";      # who are we in this network.
+    name          = "${nixVm_T_name}"; # who are we in this network.
+    debugLevel    = 3;                 # the debug level for journal -u tinc.private
+    chroot        = false;             # otherwise addresses can't be a DNS
+    interfaceType = "tap";             # tun might also work.
 
-    debugLevel    = 3;            # the debug level for journal -u tinc.private
-    chroot        = false;        # otherwise addresses can't be a DNS
-    interfaceType = "tun";        # tun might also work.
-
-    extraConfig   = ''
-      # connect to peter
-      # ----------------
+    #ed25519PrivateKeyFile = config.sops.secrets.tinc-ed25519.path;
+    rsaPrivateKeyFile = config.sops.secrets."nixVM/tinc_${myMeshName}/rsapriv".path;
+    #sops.secrets.tinc-ed25519 = { };                 
+    #sops.secrets.tinc-rsa = { };                     
+                                                      
+    extraConfig   = ''                                
+      # connect to peter                              
+      # ----------------                              
       # check AutoConnect as alternative option.
       ConnectTo  = sagan
 
-      # Keys
-      # ----
-      # if you don't set the path as string, it will import the file in
-      # in the nix/store where everybody can read it.
-      # Ed25519PrivateKeyFile = "/root/secrets/heinz/ed25519_key.priv"
-      # PrivateKeyFile        = "/root/secrets/heinz/rsa_key.priv"
     '';
     hosts = {
 

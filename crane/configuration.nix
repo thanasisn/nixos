@@ -14,9 +14,10 @@
       ./config.d/pkgs_1_netsec.nix         # network security
       ./config.d/pkgs_2_cli_extensive.nix  # extra cli functionality
       ./config.d/pkgs_3_gui_node.nix       # bagic gui tools
-      ./config.d/pkgs_4_gui_work.nix       # basic staff for work
+      # ./config.d/pkgs_4_gui_work.nix       # basic staff for work
       # ./config.d/pkgs_5_gui_desktop.nix    # my full desktop
-      ./config.d/pkgs_R_general.nix        # my R libraries
+      # ./config.d/pkgs_R_general.nix        # my R libraries
+      # ./config.d/pkgs_python_general.nix   # my R libraries
       # ./config.d/pkgs_texlive.nix          # my R libraries
       "${builtins.fetchTarball "https://github.com/Mic92/sops-nix/archive/master.tar.gz"}/modules/sops" 
    ];
@@ -83,12 +84,15 @@
   };
 
   # Enable automatic login for the user.
-  services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user   = "athan";
+  services.xserver.displayManager.autoLogin.enable    = true;
+  services.xserver.displayManager.autoLogin.user      = "athan";
   ## there is option for default desktop sellection
-  services.xserver.desktopManager.budgie.enable    = true;
-  services.xserver.windowManager.i3.enable         = true;
-  services.xserver.windowManager.i3.package        = pkgs.i3-gaps;
+  # services.xserver.displayManager.defaultSession      = "budgie";
+  # services.xserver.windowManager.herbstluftwm.enable  = true;
+  # services.xserver.windowManager.herbstluftwm.package = true;
+  # services.xserver.desktopManager.budgie.enable       = true;
+  # services.xserver.windowManager.i3.enable            = true;
+  # services.xserver.windowManager.i3.package           = pkgs.i3-gaps;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -97,6 +101,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     vim
+    sops
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -109,7 +114,7 @@
 
   # List services that you want to enable:
   
-  system.autoUpgrade.enable = true;
+  system.autoUpgrade.enable = false;
 
   # Enable the OpenSSH daemon.
   services.openssh = {
@@ -122,11 +127,16 @@
   console.useXkbConfig        = true;
 
   # Open ports in the firewall.
-  ## for tinc
-  networking.firewall.allowedUDPPorts = [ 655 ];
-  networking.firewall.allowedTCPPorts = [ 655 ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall.enable = true;
+  ## UDP ports
+  networking.firewall.allowedUDPPorts = [
+    655  # tinc
+  ];
+  ## TCP ports
+  networking.firewall.allowedTCPPorts = [
+     22  # ssh
+    655  # tinc
+  ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -151,6 +161,7 @@
   sops.validateSopsFiles = false;
   # This is the actual specification of the secrets.
   sops.secrets.example-key = {};
-  sops.secrets."myservice/my_subdir/my_secret" = {};
+
+
 
 }

@@ -10,6 +10,7 @@
     # regexxer
     # searchmonkey
     adwaita-qt
+    # python3
     arrow-cpp
     cdo
     conky

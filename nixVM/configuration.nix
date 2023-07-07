@@ -14,9 +14,10 @@
       ./config.d/pkgs_1_netsec.nix         # network security
       ./config.d/pkgs_2_cli_extensive.nix  # extra cli functionality
       ./config.d/pkgs_3_gui_node.nix       # bagic gui tools
-      ./config.d/pkgs_4_gui_work.nix       # basic staff for work
-      ./config.d/pkgs_5_gui_desktop.nix    # my full desktop
-      ./config.d/pkgs_R_general.nix        # my R libraries
+      # ./config.d/pkgs_4_gui_work.nix       # basic staff for work
+      # ./config.d/pkgs_5_gui_desktop.nix    # my full desktop
+      # ./config.d/pkgs_R_general.nix        # my R libraries
+      # ./config.d/pkgs_python_general.nix   # my R libraries
       # ./config.d/pkgs_texlive.nix          # my R libraries
       "${builtins.fetchTarball "https://github.com/Mic92/sops-nix/archive/master.tar.gz"}/modules/sops" 
    ];
@@ -87,12 +88,12 @@
   services.xserver.displayManager.autoLogin.enable    = true;
   services.xserver.displayManager.autoLogin.user      = "athan";
   ## there is option for default desktop sellection
-  services.xserver.displayManager.defaultSession      = "budgie";
-  services.xserver.windowManager.herbstluftwm.enable  = true;
+  # services.xserver.displayManager.defaultSession      = "budgie";
+  # services.xserver.windowManager.herbstluftwm.enable  = true;
   # services.xserver.windowManager.herbstluftwm.package = true;
-  services.xserver.desktopManager.budgie.enable       = true;
-  services.xserver.windowManager.i3.enable            = true;
-  services.xserver.windowManager.i3.package           = pkgs.i3-gaps;
+  # services.xserver.desktopManager.budgie.enable       = true;
+  # services.xserver.windowManager.i3.enable            = true;
+  # services.xserver.windowManager.i3.package           = pkgs.i3-gaps;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -114,7 +115,7 @@
 
   # List services that you want to enable:
   
-  system.autoUpgrade.enable = true;
+  system.autoUpgrade.enable = false;
 
   # Enable the OpenSSH daemon.
   services.openssh = {
@@ -161,12 +162,7 @@
   sops.validateSopsFiles = false;
   # This is the actual specification of the secrets.
   sops.secrets.example-key = {};
-  sops.secrets."myservice/my_subdir/my_secret" = {};
 
 
-#   services.tinc.networks.retiolum = {
-#     rsaPrivateKeyFile = "${config.lollypops.secrets.files."retiolum/rsa_priv".path}";
-#     ed25519PrivateKeyFile = "${config.lollypops.secrets.files."retiolum/ed25519_priv".path}";
-#   };
 
 }
