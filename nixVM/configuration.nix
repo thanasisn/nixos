@@ -124,11 +124,16 @@
   console.useXkbConfig        = true;
 
   # Open ports in the firewall.
-  ## for tinc
-  networking.firewall.allowedUDPPorts = [ 655 ];
-  networking.firewall.allowedTCPPorts = [ 655 ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall.enable = true;
+  ## UDP ports
+  networking.firewall.allowedUDPPorts = [
+    655  # tinc
+  ];
+  ## TCP ports
+  networking.firewall.allowedTCPPorts = [
+     22  # ssh
+    655  # tinc
+  ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -154,5 +159,11 @@
   # This is the actual specification of the secrets.
   sops.secrets.example-key = {};
   sops.secrets."myservice/my_subdir/my_secret" = {};
+
+
+#   services.tinc.networks.retiolum = {
+#     rsaPrivateKeyFile = "${config.lollypops.secrets.files."retiolum/rsa_priv".path}";
+#     ed25519PrivateKeyFile = "${config.lollypops.secrets.files."retiolum/ed25519_priv".path}";
+#   };
 
 }
