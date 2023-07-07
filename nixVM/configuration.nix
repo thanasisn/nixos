@@ -84,12 +84,15 @@
   };
 
   # Enable automatic login for the user.
-  services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user   = "athan";
+  services.xserver.displayManager.autoLogin.enable    = true;
+  services.xserver.displayManager.autoLogin.user      = "athan";
   ## there is option for default desktop sellection
-  services.xserver.desktopManager.budgie.enable    = true;
-  services.xserver.windowManager.i3.enable         = true;
-  services.xserver.windowManager.i3.package        = pkgs.i3-gaps;
+  services.xserver.displayManager.defaultSession      = "budgie";
+  services.xserver.windowManager.herbstluftwm.enable  = true;
+  # services.xserver.windowManager.herbstluftwm.package = true;
+  services.xserver.desktopManager.budgie.enable       = true;
+  services.xserver.windowManager.i3.enable            = true;
+  services.xserver.windowManager.i3.package           = pkgs.i3-gaps;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
