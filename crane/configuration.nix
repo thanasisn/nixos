@@ -4,12 +4,16 @@
 
 { config, pkgs, ... }:
 
+let
+  hostname = "crane";
+  tinc_ip  = "10.12.12.12";
+in
 {
   imports =
     [ 
       ./hardware-configuration.nix         # results of the hardware scan
       ./config.d/common_options.nix        # common options for all
-      ./config.d/tinc.nix
+      # ./config.d/tinc.nix
       ./config.d/pkgs_0_cli_basic.nix      # basic cli tools
       ./config.d/pkgs_1_netsec.nix         # network security
       ./config.d/pkgs_2_cli_extensive.nix  # extra cli functionality
@@ -22,11 +26,13 @@
       "${builtins.fetchTarball "https://github.com/Mic92/sops-nix/archive/master.tar.gz"}/modules/sops" 
    ];
 
+
+
   # Bootloader.
   boot.loader.systemd-boot.enable      = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "crane"; # Define your hostname.
+  networking.hostName = "${hostname}"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -113,8 +119,22 @@
   # };
 
   # List services that you want to enable:
-  
-  system.autoUpgrade.enable = false;
+ 
+  ## update system  
+  system.autoUpgrade.enable        = false;
+  nix.settings.auto-optimise-store = true;
+
+  ## auto garbage collection
+  nix.gc = {
+    automatic = true;
+    dates     = "weekly";
+    options   = "--delete-older-than 3d";
+  };
+
+  ## restrict logging size
+  services.journald.extraConfig = ''
+    SystemMaxUse=2G
+  '';
 
   # Enable the OpenSSH daemon.
   services.openssh = {
@@ -146,22 +166,16 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
 
-
-
   # This will add secrets.yml to the nix store
   # You can avoid this by adding a string to the full path instead, i.e.
-  # sops.defaultSopsFile = "/root/.sops/secrets/example.yaml";
-  sops.defaultSopsFile = "/etc/nixos/secrets/example.yaml";
+  sops.defaultSopsFile   = "/etc/nixos/secrets/crane_secrets.yaml";
   # This will automatically import SSH keys as age keys
-  sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+  sops.age.sshKeyPaths   = [ "/etc/ssh/ssh_host_ed25519_key" ];
   # This is using an age key that is expected to already be in the filesystem
-  sops.age.keyFile = "/root/.config/sops/age/keys.txt";
+  sops.age.keyFile       = "/root/.config/sops/age/keys.txt";
   # This will generate a new key if the key specified above does not exist
   sops.age.generateKey   = true;
   sops.validateSopsFiles = false;
-  # This is the actual specification of the secrets.
-  sops.secrets.example-key = {};
-
-
 
 }
+
