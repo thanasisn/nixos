@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
 
 {
+  # Vim for all
+  environment.variables.EDITOR = "vim";
 
   # Set your time zone.
   time.timeZone = "Europe/Athens";
@@ -29,5 +31,13 @@
     layout     = "us,el";
     xkbVariant = "";
   };
+
+  # NTP servises
+  networking.timeServers =
+    options.networking.timeServers.default ++
+      [
+        "time.cloudflare.com"
+        "ntp.fastpath.gr"
+      ]; 
 
 }
