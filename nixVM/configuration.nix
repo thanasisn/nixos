@@ -114,8 +114,22 @@
   # };
 
   # List services that you want to enable:
-  
+ 
+  ## update system  
   system.autoUpgrade.enable = false;
+  nix.settings.auto-optimise-store = true;
+
+  ## auto garbage collection
+  nix.gc = {
+  automatic = true;
+    dates   = "weekly";
+    options = "--delete-older-than 3d";
+  };
+
+  ## restrict logging size
+  services.journald.extraConfig = ''
+    SystemMaxUse=2G
+  '';
 
   # Enable the OpenSSH daemon.
   services.openssh = {
