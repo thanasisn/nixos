@@ -4,7 +4,9 @@
 let
 
   nixVm_T_ip   = "10.12.12.88";
-  nixVm_T_name = "nixVM";
+  # nixVm_T_name = "nixVM";
+  nixVm_T_name = config.networking.hostName;
+  # nixVm_T_name = "${hostname}";
 
   myMeshMask = "255.255.255.0";
   myMeshName = "cosmos";
@@ -12,6 +14,7 @@ let
 in {
   sops.secrets."nixVM/tinc_${myMeshName}/rsapriv" = {};
   sops.secrets."nixVM/tinc_${myMeshName}/rsapub"  = {};
+  #sops.secrets."${hostname}/tinc_${myMeshName}/rsapub"  = {};
 
   # simple interface setup
   # ----------------------

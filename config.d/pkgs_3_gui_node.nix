@@ -4,12 +4,15 @@
 { pkgs, ... }:
 {
   imports = [
-   ./fonts.nix
-];
+    ./fonts.nix
+  ];
+
   environment.systemPackages = with pkgs; [
     arandr
     autorandr
     brave
+    meld
+    firefox
     git-cola
     gitg
     gnome.gnome-disk-utility

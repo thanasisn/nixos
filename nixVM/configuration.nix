@@ -4,6 +4,10 @@
 
 { config, pkgs, ... }:
 
+let
+  hostname = "nixVM";
+  tinc_ip  = "10.12.12.12";
+in
 {
   imports =
     [ 
@@ -22,12 +26,14 @@
       "${builtins.fetchTarball "https://github.com/Mic92/sops-nix/archive/master.tar.gz"}/modules/sops" 
    ];
 
+
+
   # Bootloader.
   boot.loader.grub.enable      = true;
   boot.loader.grub.device      = "/dev/sda";
   boot.loader.grub.useOSProber = true;
 
-  networking.hostName = "nixVM"; # Define your hostname.
+  networking.hostName = "${hostname}"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -116,14 +122,14 @@
   # List services that you want to enable:
  
   ## update system  
-  system.autoUpgrade.enable = false;
+  system.autoUpgrade.enable        = false;
   nix.settings.auto-optimise-store = true;
 
   ## auto garbage collection
   nix.gc = {
-  automatic = true;
-    dates   = "weekly";
-    options = "--delete-older-than 3d";
+    automatic = true;
+    dates     = "weekly";
+    options   = "--delete-older-than 3d";
   };
 
   ## restrict logging size
@@ -174,9 +180,6 @@
   # This will generate a new key if the key specified above does not exist
   sops.age.generateKey   = true;
   sops.validateSopsFiles = false;
-  # This is the actual specification of the secrets.
-  sops.secrets.example-key = {};
-
-
 
 }
+
