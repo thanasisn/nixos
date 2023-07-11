@@ -27,6 +27,7 @@
     rmlint
     pkg-config
     rmlint
+    mailutils
     rsync
     shellcheck
     smartmontools

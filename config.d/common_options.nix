@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, options, ... }:
 
 {
   # Vim for all
@@ -33,11 +33,49 @@
   };
 
   # NTP servises
-  networking.timeServers =
+  networking.timeServers = 
     options.networking.timeServers.default ++
       [
-        "time.cloudflare.com"
         "ntp.fastpath.gr"
+        "time.cloudflare.com"
       ]; 
+ 
+  # ### TODO
+  # services.postfix = {
+  #   enable    = true;
+  #   submissionOptions.smtp_sasl_auth_enable = "yes";
+  #   relayHost = "smtp.gmail.com";
+  #   relayPort = 587;
+  # };
+
+  sops.secrets.systemgmailusr = {};
+  sops.secrets.systemgmailpsw = {};
+
+  programs.msmtp = {
+    enable = true;
+      defaults = {
+        tls = true;
+        port = 587;
+      };
+    accounts = {
+      defaults = {
+        auth = true;
+        from = "$(cat /run/secrets/systemgmailusr)";
+        host = "smtp.gmail.com";
+        user = ''$(cat /run/secrets/systemgmailusr)'';
+        password = "$(cat /run/secrets/systemgmailpsw)";
+      };
+    };
+  };
+
+
+
+
+  services.cron = {
+    enable = true;
+      systemCronJobs = [
+        "*/5 * * * * root date"
+      ];
+  };
 
 }

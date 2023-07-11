@@ -152,6 +152,7 @@ in
   ## UDP ports
   networking.firewall.allowedUDPPorts = [
     655  # tinc
+    123  # NTP
   ];
   ## TCP ports
   networking.firewall.allowedTCPPorts = [
