@@ -9,11 +9,22 @@ let
   tinc_ip  = "10.12.12.12";
 in
 {
+  # environment.variables = {
+  #   hostname = "nixVM";
+  #   tinc_ip  = "10.12.12.12";
+  # };
+
+  # config = {
+  #   host.name = "doyha";
+  #   host.class ="desktop";
+  # };
+
   imports =
     [ 
       ./hardware-configuration.nix         # results of the hardware scan
       ./config.d/common_options.nix        # common options for all
       ./config.d/tinc.nix
+      # ./config.d/default.nix
       ./config.d/pkgs_0_cli_basic.nix      # basic cli tools
       ./config.d/pkgs_1_netsec.nix         # network security
       ./config.d/pkgs_2_cli_extensive.nix  # extra cli functionality
@@ -34,6 +45,7 @@ in
   boot.loader.grub.useOSProber = true;
 
   networking.hostName = "${hostname}"; # Define your hostname.
+  # networking.hostName = config.environment.variables.hostname; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -84,7 +96,7 @@ in
     isNormalUser = true;
     description  = "athan";
     extraGroups  = [ "networkmanager" "wheel" ];
-    shell        = pkgs.zsh;
+  #  shell        = pkgs.zsh;
     packages     = with pkgs; [
       thunderbird
     ];
@@ -171,7 +183,7 @@ in
   # This will add secrets.yml to the nix store
   # You can avoid this by adding a string to the full path instead, i.e.
   # sops.defaultSopsFile = "/root/.sops/secrets/example.yaml";
-  sops.defaultSopsFile = "/etc/nixos/secrets/example.yaml";
+  sops.defaultSopsFile  = "/etc/nixos/secrets/example.yaml";
   # This will automatically import SSH keys as age keys
   sops.age.sshKeyPaths   = [ "/etc/ssh/ssh_host_ed25519_key" ];
   # This is using an age key that is expected to already be in the filesystem

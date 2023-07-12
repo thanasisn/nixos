@@ -4,12 +4,14 @@
 let
 
   nixVm_T_ip   = "10.12.12.88";
-  # nixVm_T_name = "nixVM";
   nixVm_T_name = config.networking.hostName;
-  # nixVm_T_name = "${hostname}";
 
   myMeshMask = "255.255.255.0";
   myMeshName = "cosmos";
+  # sops.secrets."HUID"                       = {};
+  # nixVm_T_name = "$(cat ${/run/secrets/HUID})";
+  # nixVm_T_name = config.environment.variables.HUID;
+  # nixVm_T_name = "nixVM";
 
 in {
   sops.secrets."tinc_${myMeshName}/rsapriv" = {};
@@ -60,8 +62,6 @@ in {
     rsaPrivateKeyFile = config.sops.secrets."tinc_${myMeshName}/rsapriv".path;
                                                       
     extraConfig   = ''                                
-      # connect to peter                              
-      # ----------------                              
       # check AutoConnect as alternative option.
       ConnectTo  = sagan
 
@@ -122,7 +122,7 @@ in {
 
       crane = ''
         ## crane ##
-
+        
         Subnet = 10.12.12.1
 
         -----BEGIN RSA PUBLIC KEY-----
