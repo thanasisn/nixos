@@ -12,9 +12,10 @@ let
   myMeshName = "cosmos";
 
 in {
-  sops.secrets."nixVM/tinc_${myMeshName}/rsapriv" = {};
-  sops.secrets."nixVM/tinc_${myMeshName}/rsapub"  = {};
-  #sops.secrets."${hostname}/tinc_${myMeshName}/rsapub"  = {};
+  sops.secrets."tinc_${myMeshName}/rsapriv" = {};
+  sops.secrets."tinc_${myMeshName}/rsapub"  = {};
+  sops.secrets."tinc_${myMeshName}/ip"      = {};
+  sops.secrets."HUID"                       = {};
 
   # simple interface setup
   # ----------------------
@@ -50,15 +51,13 @@ in {
   # ----------------------
   services.tinc.networks."${myMeshName}"= {
 
-    name          = "${nixVm_T_name}"; # who are we in this network.
+    name          = "${nixVm_T_name}"; 
     debugLevel    = 3;                 # the debug level for journal -u tinc.private
     chroot        = false;             # otherwise addresses can't be a DNS
     interfaceType = "tap";             # tun might also work.
 
     #ed25519PrivateKeyFile = config.sops.secrets.tinc-ed25519.path;
-    rsaPrivateKeyFile = config.sops.secrets."nixVM/tinc_${myMeshName}/rsapriv".path;
-    #sops.secrets.tinc-ed25519 = { };                 
-    #sops.secrets.tinc-rsa = { };                     
+    rsaPrivateKeyFile = config.sops.secrets."tinc_${myMeshName}/rsapriv".path;
                                                       
     extraConfig   = ''                                
       # connect to peter                              
@@ -87,11 +86,9 @@ in {
         ATmpvS1x0p3F/V97F5puxUw5hWCvkyMoOvtGKyUogW4005/XO63oqXst9wi7GU00
         AXdOKSugFkuwI0vPLVyifPlm9SQmDxFFE2rEnG7IhC3poSRPJgu18WkCAwEAAQ==
         -----END RSA PUBLIC KEY-----
-
         '';
 
       sagan = ''
-
         ## sagan ##
         
         Address = 155.207.9.214
@@ -121,8 +118,22 @@ in {
         xJ/W8bNgeR4JXMFysI4SJzuYV0WwruHUgiwlLtvNhvmtmyfa454el9snrHslWgil
         DY/QKyIBPewFFOcPdB0YX4Dddeq821zS4QIDAQAB
         -----END RSA PUBLIC KEY-----
-
       '';
+
+      crane = ''
+        ## crane ##
+
+        Subnet = 10.12.12.1
+
+        -----BEGIN RSA PUBLIC KEY-----
+        MIIBCgKCAQEAtr0lAPjWVTJ2WQSvo/owSdyfkvi3Dz70DK6g12y1YLwhg97jOm0X
+        KfaP4PglWKu83eaFBCqoBpxYk3BQS0IUUyASlN+tOgkOmP++R5eO7tziRhsyrJho
+        v3ch4/vEsEkCSPi8+Y8T8HWVTKw+BC76fFY4B6l04YEXfEaezlt3gUZWeI4ld7D3
+        nzl4Dbb+OsBjOFmNEE/c1/VaTJFtdOTb/s6kNfejsrkwjHuHuEwGFH6G8MpjBlFa
+        DH2ii9XMrp9UHmgD+IGnNiFaa28+GBuIyS1ZquiXmmU+rYVs7UyoPfUy+L9UoTs0
+        hkE4hGlFrI4R1pyJVFi2d5Ao3pbYQN/O5wIDAQAB
+        -----END RSA PUBLIC KEY-----
+        '';
     };
   };
 
