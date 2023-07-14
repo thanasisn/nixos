@@ -1,31 +1,17 @@
-
+## Configure tinc network 1 
 { config, pkgs, ...}:
 
-let
+{
+  ## prepare secrets
+  sops.secrets."tinc_${config.hmod.tincnet1}/rsapriv" = {};
+  sops.secrets."tinc_${config.hmod.tincnet1}/rsapub"  = {};
+  sops.secrets."tinc_${config.hmod.tincnet1}/ip"      = {};
+  sops.secrets."HUID"                                 = {};
 
-  nixVm_T_ip   = "10.12.12.88";
-  nixVm_T_name = config.networking.hostName;
-
-  myMeshMask = "255.255.255.0";
-  myMeshName = "cosmos";
-  # sops.secrets."HUID"                       = {};
-  # nixVm_T_name = "$(cat ${/run/secrets/HUID})";
-  # nixVm_T_name = config.environment.variables.HUID;
-  # nixVm_T_name = "nixVM";
-
-in {
-  sops.secrets."tinc_${myMeshName}/rsapriv" = {};
-  sops.secrets."tinc_${myMeshName}/rsapub"  = {};
-  sops.secrets."tinc_${myMeshName}/ip"      = {};
-  sops.secrets."HUID"                       = {};
-
-  # simple interface setup
-  # ----------------------
-  # option A
-  # networking.interfaces."tinc.${myMeshName}" = [ { address = nixVm_T_ip; } ];
-  # option B
-  networking.interfaces."tinc.${myMeshName}".ipv4.addresses = [ { address = nixVm_T_ip; prefixLength = 24; } ];
-  # option c
+  ## simple interface setup
+  networking.interfaces."tinc.${config.hmod.tincnet1}".ipv4.addresses =
+   [ { address = config.hmod.cosmosip; prefixLength = 24; } ];
+  # other option
   # environment.etc = {
   #     "tinc/${myMeshName}/tinc-up".source = pkgs.writeScript "tinc-up-${myMeshName}" ''
   #         #!${pkgs.stdenv.shell}
@@ -48,19 +34,16 @@ in {
   #   }
   # ];
 
-
-  # configure tinc service
-  # ----------------------
-  services.tinc.networks."${myMeshName}"= {
-
-    name          = "${nixVm_T_name}"; 
+  ## configure tinc
+  services.tinc.networks."${config.hmod.tincnet1}"= {
+    name          = config.hmod.cosmosip; 
     debugLevel    = 3;                 # the debug level for journal -u tinc.private
     chroot        = false;             # otherwise addresses can't be a DNS
     interfaceType = "tap";             # tun might also work.
 
     #ed25519PrivateKeyFile = config.sops.secrets.tinc-ed25519.path;
-    rsaPrivateKeyFile = config.sops.secrets."tinc_${myMeshName}/rsapriv".path;
-                                                      
+    rsaPrivateKeyFile = config.sops.secrets."tinc_${config.hmod.tincnet1}/rsapriv".path;
+                                              
     extraConfig   = ''                                
       # check AutoConnect as alternative option.
       ConnectTo  = sagan
@@ -68,7 +51,6 @@ in {
     '';
     hosts = {
 
-#        cat ${sops.secrets."tinc_cosmos/nixVM/rsakey".path}
       nixVM = ''
 
         Subnet = 10.12.12.88
