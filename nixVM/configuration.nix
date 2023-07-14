@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 let
   hostname = "nixVM";
@@ -21,6 +21,7 @@ in
 
   imports =
     [ 
+      ./nixVM.nix
       ./hardware-configuration.nix         # results of the hardware scan
       ./config.d/common_options.nix        # common options for all
       ./config.d/tinc.nix
@@ -38,13 +39,13 @@ in
    ];
 
 
-
   # Bootloader.
   boot.loader.grub.enable      = true;
   boot.loader.grub.device      = "/dev/sda";
   boot.loader.grub.useOSProber = true;
 
-  networking.hostName = "${hostname}"; # Define your hostname.
+  networking.hostName = config.mymodule.hostname; 
+  # networking.hostName = "${hostname}"; # Define your hostname.
   # networking.hostName = config.environment.variables.hostname; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
