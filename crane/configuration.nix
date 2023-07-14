@@ -1,30 +1,13 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
+{ config, pkgs, lib, ... }:
 
-{ config, pkgs, ... }:
-
-let
-  hostname = "crane";
-  tinc_ip  = "10.12.12.12";
-in
 {
-  # environment.variables = {
-  #   hostname = "nixVM";
-  #   tinc_ip  = "10.12.12.12";
-  # };
-
-  # config = {
-  #   host.name = "doyha";
-  #   host.class ="desktop";
-  # };
-
   imports =
     [ 
+      ./crane.nix                          # this host global variables
+      ./config.d/hmod.nix                  # custom module for host globals
       ./hardware-configuration.nix         # results of the hardware scan
       ./config.d/common_options.nix        # common options for all
-      # ./config.d/tinc.nix
-      # ./config.d/default.nix
+      ./config.d/tinc.nix
       ./config.d/pkgs_0_cli_basic.nix      # basic cli tools
       ./config.d/pkgs_1_netsec.nix         # network security
       ./config.d/pkgs_2_cli_extensive.nix  # extra cli functionality
@@ -37,19 +20,13 @@ in
       "${builtins.fetchTarball "https://github.com/Mic92/sops-nix/archive/master.tar.gz"}/modules/sops" 
    ];
 
-
-
   # Bootloader.
   boot.loader.systemd-boot.enable      = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "${hostname}"; # Define your hostname.
-  # networking.hostName = config.environment.variables.hostname; # Define your hostname.
+  networking.hostName = config.hmod.hostname; 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -130,7 +107,6 @@ in
   #   enableSSHSupport = true;
   # };
 
-  # List services that you want to enable:
  
   ## update system  
   system.autoUpgrade.enable        = false;

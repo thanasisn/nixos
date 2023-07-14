@@ -1,31 +1,13 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, lib, ... }:
 
-let
-  hostname = "nixVM";
-  tinc_ip  = "10.12.12.12";
-in
 {
-  # environment.variables = {
-  #   hostname = "nixVM";
-  #   tinc_ip  = "10.12.12.12";
-  # };
-
-  # config = {
-  #   host.name = "doyha";
-  #   host.class ="desktop";
-  # };
-
   imports =
     [ 
-      ./nixVM.nix
+      ./nixVM.nix                          # this host global variables
+      ./config.d/hmod.nix                  # custom module for host globals
       ./hardware-configuration.nix         # results of the hardware scan
       ./config.d/common_options.nix        # common options for all
       ./config.d/tinc.nix
-      # ./config.d/default.nix
       ./config.d/pkgs_0_cli_basic.nix      # basic cli tools
       ./config.d/pkgs_1_netsec.nix         # network security
       ./config.d/pkgs_2_cli_extensive.nix  # extra cli functionality
@@ -38,20 +20,14 @@ in
       "${builtins.fetchTarball "https://github.com/Mic92/sops-nix/archive/master.tar.gz"}/modules/sops" 
    ];
 
-
   # Bootloader.
   boot.loader.grub.enable      = true;
   boot.loader.grub.device      = "/dev/sda";
   boot.loader.grub.useOSProber = true;
 
-  networking.hostName = config.mymodule.hostname; 
-  # networking.hostName = "${hostname}"; # Define your hostname.
-  # networking.hostName = config.environment.variables.hostname; # Define your hostname.
+  networking.hostName = config.hmod.hostname; 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -132,7 +108,6 @@ in
   #   enableSSHSupport = true;
   # };
 
-  # List services that you want to enable:
  
   ## update system  
   system.autoUpgrade.enable        = false;
@@ -165,7 +140,6 @@ in
   ## UDP ports
   networking.firewall.allowedUDPPorts = [
     655  # tinc
-    123  # NTP
   ];
   ## TCP ports
   networking.firewall.allowedTCPPorts = [
@@ -184,7 +158,7 @@ in
   # This will add secrets.yml to the nix store
   # You can avoid this by adding a string to the full path instead, i.e.
   # sops.defaultSopsFile = "/root/.sops/secrets/example.yaml";
-  sops.defaultSopsFile  = "/etc/nixos/secrets/example.yaml";
+  sops.defaultSopsFile   = "/etc/nixos/secrets/example.yaml";
   # This will automatically import SSH keys as age keys
   sops.age.sshKeyPaths   = [ "/etc/ssh/ssh_host_ed25519_key" ];
   # This is using an age key that is expected to already be in the filesystem
