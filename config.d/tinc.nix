@@ -5,8 +5,6 @@
   ## prepare secrets
   sops.secrets."tinc_${config.hmod.tincnet1}/rsapriv" = {};
   sops.secrets."tinc_${config.hmod.tincnet1}/rsapub"  = {};
-  sops.secrets."tinc_${config.hmod.tincnet1}/ip"      = {};
-  sops.secrets."HUID"                                 = {};
 
   ## simple interface setup
   networking.interfaces."tinc.${config.hmod.tincnet1}".ipv4.addresses =
@@ -36,7 +34,7 @@
 
   ## configure tinc
   services.tinc.networks."${config.hmod.tincnet1}"= {
-    name          = config.hmod.cosmosip; 
+    name          = config.hmod.hostname; 
     debugLevel    = 3;                 # the debug level for journal -u tinc.private
     chroot        = false;             # otherwise addresses can't be a DNS
     interfaceType = "tap";             # tun might also work.
