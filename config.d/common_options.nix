@@ -40,33 +40,81 @@
         "time.cloudflare.com"
       ]; 
  
-  # ### TODO
-  # services.postfix = {
-  #   enable    = true;
-  #   submissionOptions.smtp_sasl_auth_enable = "yes";
-  #   relayHost = "smtp.gmail.com";
-  #   relayPort = 587;
-  # };
+  ### TODO
+  services.postfix = {
+    enable    = true;
+    # submissionOptions.smtp_sasl_auth_enable = "yes";
+    # relayHost = "smtp.gmail.com";
+    # relayPort = 587;
+    extraConfig = ''
+    smtp_use_tls = yes                                                        
+    smtp_sasl_auth_enable = yes                                               
+    smtp_sasl_security_options =                                              
+    smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd                   
+    smtp_tls_CAfile = /etc/ssl/certs/ca-certificates.crt                      
+    smtpd_relay_restrictions = permit_mynetworks permit_sasl_authenticated defer_unauth_destination
+    myhostname = nixVM
+    alias_maps = hash:/etc/aliases
+    alias_database = hash:/etc/aliases
+    ## ? myorigin = /etc/mailname
+    mydestination = $myhostname, nixVM.net, tyler, localhost.localdomain, localhost
+    relayhost = [smtp.gmail.com]:587
+    mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128
+    mailbox_size_limit = 0
+    recipient_delimiter = +
+    inet_interfaces = all
+    inet_protocols = all
+
+    '';
+  };
+
+
+  environment.etc = {
+    "aliases" = {
+      text = ''
+        mailer-daemon: postmaster
+        postmaster:    root
+        nobody:        root
+        hostmaster:    root
+        usenet:        root
+        news:          root
+        webmaster:     root
+        www:           root
+        ftp:           root
+        abuse:         root
+        noc:           root
+        security:      root
+        root:          ath.nats.sys@gmail.com 
+        athan:         ath.nats.sys@gmail.com
+        ppss:          ath.nats.sys@gmail.com
+        clamav:        root
+        logcheck:      root
+        monit:         root
+      '';
+      mode = "0644";
+    };
+  };
+
 
   sops.secrets.systemgmailusr = {};
   sops.secrets.systemgmailpsw = {};
 
-  programs.msmtp = {
-    enable = true;
-      defaults = {
-        tls = true;
-        port = 587;
-      };
-    accounts = {
-      defaults = {
-        auth = true;
-        from = "$(cat /run/secrets/systemgmailusr)";
-        host = "smtp.gmail.com";
-        user = ''$(cat /run/secrets/systemgmailusr)'';
-        password = "$(cat /run/secrets/systemgmailpsw)";
-      };
-    };
-  };
+  # programs.msmtp = {
+  #   enable = true;
+  #     defaults = {
+  #       tls = true;
+  #       port = 587;
+  #     };
+  #   accounts = {
+  #     defaults = {
+  #       auth = true;
+  #       from = "$(cat /run/secrets/systemgmailusr)";
+  #       host = "smtp.gmail.com";
+  #       user = ''$(cat /run/secrets/systemgmailusr)'';
+  #       password = "$(cat /run/secrets/systemgmailpsw)";
+  #     };
+  #   };
+  # };
 
 
 
