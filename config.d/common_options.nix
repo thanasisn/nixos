@@ -41,30 +41,34 @@
       ]; 
  
   ### TODO
+  systemd.services.postfix.after = [ "sops-nix.service" ];
+  sops.secrets.postfix_sasl_passwd = {
+    owner = config.services.postfix.user;
+    key   = "postfix_sasl_passwd";
+  };  
   services.postfix = {
     enable    = true;
-    # submissionOptions.smtp_sasl_auth_enable = "yes";
-    # relayHost = "smtp.gmail.com";
-    # relayPort = 587;
+    submissionOptions.smtp_sasl_auth_enable = "yes";
+    submissionOptions.smtp_sasl_password_maps = "hash:${config.sops.secrets.postfix_sasl_passwd.path}"; 
+    relayHost = "smtp.gmail.com";
+    relayPort = 587;
     extraConfig = ''
     smtp_use_tls = yes                                                        
     smtp_sasl_auth_enable = yes                                               
     smtp_sasl_security_options =                                              
-    smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd                   
-    smtp_tls_CAfile = /etc/ssl/certs/ca-certificates.crt                      
+    # smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd                   
+    # smtp_tls_CAfile = /etc/ssl/certs/ca-certificates.crt                      
     smtpd_relay_restrictions = permit_mynetworks permit_sasl_authenticated defer_unauth_destination
-    myhostname = nixVM
+    # myhostname = nixVM
     alias_maps = hash:/etc/aliases
     alias_database = hash:/etc/aliases
     ## ? myorigin = /etc/mailname
-    mydestination = $myhostname, nixVM.net, tyler, localhost.localdomain, localhost
-    relayhost = [smtp.gmail.com]:587
+    mydestination = $myhostname, nixVM.net, nixVM, localhost.localdomain, localhost
     mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128
     mailbox_size_limit = 0
     recipient_delimiter = +
     inet_interfaces = all
     inet_protocols = all
-
     '';
   };
 
