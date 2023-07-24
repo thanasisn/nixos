@@ -72,7 +72,24 @@
   users.users.athan = {
     isNormalUser = true;
     description  = "athan";
-    extraGroups  = [ "networkmanager" "wheel" ];
+    extraGroups  = [
+                     "networkmanager"
+                     "wheel"
+                     "cdrom"
+                     "flopy"
+                     "sudo"
+                     "audio"
+                     "dip"
+                     "video"
+                     "plugdev"
+                     "kvm"
+                     "netdev"
+                     "bluetooth"
+                     "lpadmin"
+                     "scanner"
+                     "whireshark"
+                     "libvirt"
+                    ];
   #  shell        = pkgs.zsh;
     packages     = with pkgs; [
       thunderbird
@@ -92,13 +109,6 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    vim
-    sops
-  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -166,6 +176,37 @@
   # This will generate a new key if the key specified above does not exist
   sops.age.generateKey   = true;
   sops.validateSopsFiles = false;
+
+
+  # Only install the docs I use
+  documentation.enable       = true;
+  documentation.nixos.enable = true;
+  documentation.man.enable   = true;
+  documentation.info.enable  = false;
+  documentation.doc.enable   = false;
+
+  environment = {
+    # Eject nano and perl from the system
+    defaultPackages = with pkgs; lib.mkForce [
+      #? gitMinimal
+      home-manager
+      micro
+      rsync
+    ];
+    systemPackages = with pkgs; [
+      #? pciutils
+      #? psmisc
+      sops
+      vim
+      unzip
+      usbutils
+    ];
+    variables = {
+      EDITOR         = "vim";
+      SYSTEMD_EDITOR = "vim";
+      VISUAL         = "vim";
+    };
+  };
 
 }
 
