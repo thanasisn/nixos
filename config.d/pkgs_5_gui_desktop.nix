@@ -28,8 +28,8 @@
 # volumeicon-alsa
 # xdotool
 # xserver-xorg-input-synaptics
-  zathura
-  zim
+    zathura
+    zim
 
   ];
 }

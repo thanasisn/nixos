@@ -7,10 +7,10 @@
   environment.systemPackages = with pkgs; [
     # kst
     # nix-software-center
+    # python3
     # regexxer
     # searchmonkey
     adwaita-qt
-    # python3
     arrow-cpp
     cdo
     conky
@@ -49,6 +49,7 @@
     spyder
     sqlitebrowser
     thunderbird
+    viber
     viking
     xfce.xfce4-appfinder
     zathura

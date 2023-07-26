@@ -4,19 +4,9 @@
   imports =
     [ 
       ./nixVM.nix                          # this host global variables
-      ./config.d/hmod.nix                  # custom module for host globals
       ./hardware-configuration.nix         # results of the hardware scan
-      ./config.d/common_options.nix        # common options for all
-      ./config.d/tinc.nix
-      ./config.d/pkgs_0_cli_basic.nix      # basic cli tools
-      ./config.d/pkgs_1_netsec.nix         # network security
-      ./config.d/pkgs_2_cli_extensive.nix  # extra cli functionality
-      ./config.d/pkgs_3_gui_node.nix       # bagic gui tools
-      # ./config.d/pkgs_4_gui_work.nix       # basic staff for work
-      # ./config.d/pkgs_5_gui_desktop.nix    # my full desktop
-      # ./config.d/pkgs_R_general.nix        # my R libraries
-      # ./config.d/pkgs_python_general.nix   # my R libraries
-      # ./config.d/pkgs_texlive.nix          # my R libraries
+      ../config.d/hmod.nix                 # custom module for host globals
+      ../config.d/common_options.nix       # common options for all
       "${builtins.fetchTarball "https://github.com/Mic92/sops-nix/archive/master.tar.gz"}/modules/sops" 
    ];
 
@@ -53,10 +43,10 @@
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
-    enable = true;
-    alsa.enable = true;
+    enable            = true;
+    alsa.enable       = true;
     alsa.support32Bit = true;
-    pulse.enable = true;
+    pulse.enable      = true;
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
 

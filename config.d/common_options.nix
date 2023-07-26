@@ -2,7 +2,9 @@
 
 {
   # Vim for all
-  environment.variables.EDITOR = "vim";
+  environment.variables.EDITOR         = "vim";
+  environment.variables.VISUAL         = "vim";
+  environment.variables.SYSTEMD_EDITOR = "vim";
 
   # Set your time zone.
   time.timeZone = "Europe/Athens";
