@@ -168,13 +168,6 @@
   sops.validateSopsFiles = false;
 
 
-  # Only install the docs I use
-  documentation.enable       = true;
-  documentation.nixos.enable = true;
-  documentation.man.enable   = true;
-  documentation.info.enable  = false;
-  documentation.doc.enable   = false;
-
   environment = {
     # Eject nano and perl from the system
     defaultPackages = with pkgs; lib.mkForce [
@@ -191,11 +184,6 @@
       unzip
       usbutils
     ];
-    variables = {
-      EDITOR         = "vim";
-      SYSTEMD_EDITOR = "vim";
-      VISUAL         = "vim";
-    };
   };
 
 }

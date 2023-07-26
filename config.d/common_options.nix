@@ -34,6 +34,13 @@
     xkbVariant = "";
   };
 
+  # Only install the docs I use
+  documentation.enable       = true;
+  documentation.nixos.enable = true;
+  documentation.man.enable   = true;
+  documentation.info.enable  = false;
+  documentation.doc.enable   = false;
+
   # NTP servises
   networking.timeServers = 
     options.networking.timeServers.default ++
