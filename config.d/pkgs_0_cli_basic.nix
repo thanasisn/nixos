@@ -20,14 +20,14 @@
     ipset
     lm_sensors
     magic-wormhole
+    mailutils
     mc
+    mutt
     ncdu
     nmap
     openssh
-    rmlint
     pkg-config
     rmlint
-    mailutils
     rsync
     shellcheck
     smartmontools

@@ -68,8 +68,8 @@
      smtp_sasl_auth_enable      = "yes";                                               
      smtp_sasl_security_options = "noanonymous";
      smtp_sasl_password_maps    = "hash:/var/lib/postfix/conf/mycreds";
-     smtp_tls_wrappermode       = "yes";
-     smtp_tls_security_level    = "encrypt";
+    # smtp_tls_wrappermode       = "yes";
+    # smtp_tls_security_level    = "encrypt";
     };
 
     # submissionOptions.smtp_sasl_auth_enable = "yes";
@@ -78,11 +78,11 @@
     extraConfig = ''
     # smtp_tls_CAfile = /etc/ssl/certs/ca-certificates.crt                      
     # smtpd_relay_restrictions = permit_mynetworks permit_sasl_authenticated defer_unauth_destination
-    # myhostname = nixVM
-    # alias_maps = hash:/etc/aliases
+    myhostname = nixVM
+    alias_maps = hash:/etc/aliases
     # alias_database = hash:/etc/aliases
     ## ? myorigin = /etc/mailname
-    # mydestination = $myhostname, nixVM.net, nixVM, localhost.localdomain, localhost
+    mydestination = $myhostname, nixVM.net, nixVM, localhost.localdomain, localhost
     # mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128
     # mailbox_size_limit = 0
     # recipient_delimiter = +
