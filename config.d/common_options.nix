@@ -53,7 +53,7 @@
   systemd.services.postfix.after = [ "sops-nix.service" ];
   sops.secrets.postfix_sasl_passwd = {
   #  owner = config.services.postfix.user;
-    key   = "postfix_sasl_passwd";
+  #  key   = "postfix_sasl_passwd";
     mode  = "0400";
   };  
 
@@ -61,24 +61,23 @@
     enable    = true;
     relayHost = "smtp.gmail.com";
     relayPort = 587;
-    mapFiles.mycreds = config.sops.secrets.postfix_sasl_passwd.path;
+    # mapFiles.mycreds = config.sops.secrets.postfix_sasl_passwd.path;
+    mapFiles.postfix_sasl_passwd = "/run/secrets/postfix_sasl_passwd";
 
     config = {
-     smtp_use_tls               = "yes";
-     smtp_sasl_auth_enable      = "yes";                                               
-     smtp_sasl_security_options = "noanonymous";
-     smtp_sasl_password_maps    = "hash:/var/lib/postfix/conf/mycreds";
-    # smtp_tls_wrappermode       = "yes";
-    # smtp_tls_security_level    = "encrypt";
+      myhostname                 = config.hmod.hostname;
+      smtp_use_tls               = "yes";
+      smtp_sasl_auth_enable      = "yes";                                               
+      smtp_sasl_security_options = "noanonymous";
+      smtp_sasl_password_maps    = "hash:/etc/postfix/postfix_sasl_passwd";
+     # smtp_tls_wrappermode       = "yes";
+     # smtp_tls_security_level    = "encrypt";
     };
-
-    # submissionOptions.smtp_sasl_auth_enable = "yes";
-    # submissionOptions.smtp_sasl_password_maps = "hash:${config.sops.secrets.postfix_sasl_passwd.path}"; 
 
     extraConfig = ''
     # smtp_tls_CAfile = /etc/ssl/certs/ca-certificates.crt                      
     # smtpd_relay_restrictions = permit_mynetworks permit_sasl_authenticated defer_unauth_destination
-    myhostname = nixVM
+    # myhostname = nixVM
     alias_maps = hash:/etc/aliases
     # alias_database = hash:/etc/aliases
     ## ? myorigin = /etc/mailname
@@ -118,33 +117,11 @@
     };
   };
 
-
-  # sops.secrets.systemgmailusr = {};
-  # sops.secrets.systemgmailpsw = {};
-  # programs.msmtp = {
-  #   enable = true;
-  #     defaults = {
-  #       tls = true;
-  #       port = 587;
-  #     };
-  #   accounts = {
-  #     defaults = {
-  #       auth = true;
-  #       from = "$(cat /run/secrets/systemgmailusr)";
-  #       host = "smtp.gmail.com";
-  #       user = ''$(cat /run/secrets/systemgmailusr)'';
-  #       password = "$(cat /run/secrets/systemgmailpsw)";
-  #     };
-  #   };
-  # };
-
-
-
-
+  ## test cron and email 
   services.cron = {
     enable = true;
       systemCronJobs = [
-        "*/5 * * * * root date"
+        "*/10 * * * * root date"
       ];
   };
 
