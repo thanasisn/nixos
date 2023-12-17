@@ -49,7 +49,7 @@
         "time.cloudflare.com"
       ]; 
  
-  ### TODO
+  
   systemd.services.postfix.after = [ "sops-nix.service" ];
   sops.secrets.postfix_sasl_passwd = {
   #  owner = config.services.postfix.user;
@@ -91,29 +91,11 @@
   };
 
 
+  sops.secrets."etc/aliases" = {};
   environment.etc = {
     "aliases" = {
-      text = ''
-        mailer-daemon: postmaster
-        postmaster:    root
-        nobody:        root
-        hostmaster:    root
-        usenet:        root
-        news:          root
-        webmaster:     root
-        www:           root
-        ftp:           root
-        abuse:         root
-        noc:           root
-        security:      root
-        root:          ath.nats.sys@gmail.com 
-        athan:         ath.nats.sys@gmail.com
-        ppss:          ath.nats.sys@gmail.com
-        clamav:        root
-        logcheck:      root
-        monit:         root
-      '';
-      mode = "0644";
+       source = "/run/secrets/etc/aliases" ;
+       mode   = "0644";
     };
   };
 
