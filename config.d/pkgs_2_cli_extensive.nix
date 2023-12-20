@@ -28,7 +28,7 @@
     ffmpeg
     ffmpegthumbs
     file
-    findimagedupes
+    # findimagedupes
     flac
     fstrcmp
     fzf
