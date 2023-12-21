@@ -30,6 +30,5 @@
 # xserver-xorg-input-synaptics
     zathura
     zim
-
   ];
 }

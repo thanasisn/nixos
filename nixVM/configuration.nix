@@ -11,8 +11,8 @@
    ];
 
   # Bootloader.
-  boot.loader.grub.enable      = true;
-  boot.loader.grub.device      = "/dev/sda";
+  boot.loader.grub.enable = true;
+  boot.loader.grub.device = "/dev/sda";
   boot.loader.grub.useOSProber = true;
 
   networking.hostName = config.hmod.hostname; 
@@ -35,6 +35,25 @@
   services.xserver.displayManager.lightdm.enable = true;
   services.xserver.desktopManager.lxqt.enable    = true;
 
+  # Enable automatic login for the user.
+  services.xserver.displayManager.autoLogin.enable    = true;
+  services.xserver.displayManager.autoLogin.user      = "athan";
+  
+  ## there is option for default desktop sellection
+  # services.xserver.displayManager.defaultSession      = "budgie";
+  # services.xserver.windowManager.herbstluftwm.enable  = true;
+  # services.xserver.windowManager.herbstluftwm.package = true;
+  # services.xserver.desktopManager.budgie.enable       = true;
+  # services.xserver.windowManager.i3.enable            = true;
+  # services.xserver.windowManager.i3.package           = pkgs.i3-gaps;
+
+
+  # Configure keymap in X11
+  # services.xserver.xkb.layout  = "us";
+  # services.xserver.xkb.options = "eurosign:e,caps:escape";
+  # services.xserver.xkbOptions = "caps:swapescape";
+  console.useXkbConfig         = true;
+  
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
@@ -61,7 +80,6 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.athan = {
     isNormalUser = true;
-    description  = "athan";
     extraGroups  = [
                      "networkmanager"
                      "wheel"
@@ -79,23 +97,13 @@
                      "scanner"
                      "whireshark"
                      "libvirt"
-                    ];
+                   ];
   #  shell        = pkgs.zsh;
     packages     = with pkgs; [
       thunderbird
     ];
   };
 
-  # Enable automatic login for the user.
-  services.xserver.displayManager.autoLogin.enable    = true;
-  services.xserver.displayManager.autoLogin.user      = "athan";
-  ## there is option for default desktop sellection
-  # services.xserver.displayManager.defaultSession      = "budgie";
-  # services.xserver.windowManager.herbstluftwm.enable  = true;
-  # services.xserver.windowManager.herbstluftwm.package = true;
-  # services.xserver.desktopManager.budgie.enable       = true;
-  # services.xserver.windowManager.i3.enable            = true;
-  # services.xserver.windowManager.i3.package           = pkgs.i3-gaps;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -131,9 +139,7 @@
     settings.PermitRootLogin = "no";
   };
 
-  ## change key binds
-  services.xserver.xkbOptions = "caps:swapescape";
-  console.useXkbConfig        = true;
+
 
   # Open ports in the firewall.
   networking.firewall.enable = true;
@@ -147,44 +153,41 @@
     655  # tinc
   ];
 
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.05"; # Did you read the comment?
+  # Copy the NixOS configuration file and link it from the resulting system
+  # (/run/current-system/configuration.nix). This is useful in case you
+  # accidentally delete configuration.nix.
+  system.copySystemConfiguration = true;
+
 
   # This will add secrets.yml to the nix store
   # You can avoid this by adding a string to the full path instead, i.e.
-  # sops.defaultSopsFile = "/root/.sops/secrets/example.yaml";
-  sops.defaultSopsFile   = "/etc/nixos/secrets/example.yaml";
+  sops.defaultSopsFile   = "/home/athan/CODE/nixos/nixVM/secrets/example.yaml";
   # This will automatically import SSH keys as age keys
-  sops.age.sshKeyPaths   = [ "/etc/ssh/ssh_host_ed25519_key" ];
+  # sops.age.sshKeyPaths   = [ "/etc/ssh/ssh_host_ed25519_key" ];
   # This is using an age key that is expected to already be in the filesystem
   sops.age.keyFile       = "/root/.config/sops/age/keys.txt";
   # This will generate a new key if the key specified above does not exist
-  sops.age.generateKey   = true;
+  sops.age.generateKey   = false;
   sops.validateSopsFiles = false;
 
 
-  environment = {
-    # Eject nano and perl from the system
-    defaultPackages = with pkgs; lib.mkForce [
-      #? gitMinimal
-      home-manager
-      micro
-      rsync
-    ];
-    systemPackages = with pkgs; [
-      #? pciutils
-      #? psmisc
-      sops
-      vim
-      unzip
-      usbutils
-    ];
-  };
+  # This option defines the first version of NixOS you have installed on this particular machine,
+  # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
+  #
+  # Most users should NEVER change this value after the initial install, for any reason,
+  # even if you've upgraded your system to a new NixOS release.
+  #
+  # This value does NOT affect the Nixpkgs version your packages and OS are pulled from,
+  # so changing it will NOT upgrade your system.
+  #
+  # This value being lower than the current NixOS release does NOT mean your system is
+  # out of date, out of support, or vulnerable.
+  #
+  # Do NOT change this value unless you have manually inspected all the changes it would make to your configuration,
+  # and migrated your data accordingly.
+  #
+  # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
+  system.stateVersion = "23.11"; # Did you read the comment?
 
 }
 

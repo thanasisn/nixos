@@ -3,7 +3,7 @@
 
 { pkgs, ... }:
 {
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     corefonts
     dejavu_fonts
     fira-code

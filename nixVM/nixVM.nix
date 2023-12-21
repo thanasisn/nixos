@@ -9,6 +9,7 @@ with lib;
 
   imports = [
       ../config.d/tinc.nix                 # start a tinc vpn
+      ../config.d/i3.nix
       ../config.d/pkgs_0_cli_basic.nix     # basic cli tools
       ../config.d/pkgs_1_netsec.nix        # network security
       ../config.d/pkgs_2_cli_extensive.nix # extra cli functionality

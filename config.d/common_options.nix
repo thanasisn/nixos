@@ -30,7 +30,10 @@
 
   # Configure keymap in X11
   services.xserver = {
-    layout     = "us,el";
+    layout     = "us,gr";
+    # layout     = "us,el";
+    xkbOptions = "grp:alt_shift_toggle,caps:escape_shifted_capslock";
+    # Make Caps Lock an additional Esc, but Shift + Caps Lock is the regular Caps Lock
     xkbVariant = "";
   };
 
