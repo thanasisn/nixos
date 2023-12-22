@@ -44,8 +44,8 @@
   # services.xserver.windowManager.herbstluftwm.enable  = true;
   # services.xserver.windowManager.herbstluftwm.package = true;
   # services.xserver.desktopManager.budgie.enable       = true;
-  # services.xserver.windowManager.i3.enable            = true;
-  # services.xserver.windowManager.i3.package           = pkgs.i3-gaps;
+  services.xserver.windowManager.i3.enable            = true;
+  services.xserver.windowManager.i3.package           = pkgs.i3-gaps;
 
 
   # Configure keymap in X11
@@ -140,7 +140,6 @@
   };
 
 
-
   # Open ports in the firewall.
   networking.firewall.enable = true;
   ## UDP ports
@@ -188,6 +187,5 @@
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "23.11"; # Did you read the comment?
-
 }
 

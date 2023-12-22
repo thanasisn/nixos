@@ -12,8 +12,14 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/bcd19c5d-240e-4821-aa53-a8c37d8d95cd";
-      fsType = "ext4";
+    { device  = "/dev/disk/by-uuid/bcd19c5d-240e-4821-aa53-a8c37d8d95cd";
+      fsType  = "ext4";
+      options = [
+          "noatime"
+         # "space_cache"
+         # "autodefrag"
+         # "discard"
+        ];
     };
 
   swapDevices =
