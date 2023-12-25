@@ -1,5 +1,5 @@
 keys:
-  - &admin_athan age1rz6ggdemlstnnemewuw4pqecmz7rumvql9rhxqfswq3gjvv48s8synfjcn
+  - &admin_athan age1mnwrswlmdlut23rnt0phw8namz8nyw70jlfuxtzzp8h4yurq2aeqv7vsjm
 creation_rules:
   - path_regex: secrets/[^/]+\.yaml$
     key_groups:

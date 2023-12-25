@@ -8,7 +8,7 @@
       ../config.d/hmod.nix                 # custom module for host globals
       ../config.d/common_options.nix       # common options for all
       "${builtins.fetchTarball "https://github.com/Mic92/sops-nix/archive/master.tar.gz"}/modules/sops" 
-   ];
+    ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable      = true;
@@ -63,8 +63,6 @@
     alsa.enable       = true;
     alsa.support32Bit = true;
     pulse.enable      = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
 
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
@@ -165,15 +163,13 @@
 
   # This will add secrets.yml to the nix store
   # You can avoid this by adding a string to the full path instead, i.e.
-  sops.defaultSopsFile   = "/home/athan/CODE/nixos/secrets/crane_secrets.yaml";
-  # This will automatically import SSH keys as age keys
-  # sops.age.sshKeyPaths   = [ "/etc/ssh/ssh_host_ed25519_key" ];
+  sops.defaultSopsFile   = "/home/athan/CODE/nixos/crane/secrets/crane_secrets.yaml";
+
   # This is using an age key that is expected to already be in the filesystem
   sops.age.keyFile       = "/root/.config/sops/age/keys.txt";
   # This will generate a new key if the key specified above does not exist
   sops.age.generateKey   = false;
   sops.validateSopsFiles = false;
-
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
