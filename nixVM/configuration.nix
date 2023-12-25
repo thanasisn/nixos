@@ -18,7 +18,6 @@
   networking.hostName = config.hmod.hostname; 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-
   # Enable networking
   networking.networkmanager.enable = true;
 
@@ -46,7 +45,6 @@
   # services.xserver.desktopManager.budgie.enable       = true;
   services.xserver.windowManager.i3.enable            = true;
   services.xserver.windowManager.i3.package           = pkgs.i3-gaps;
-
 
   # Configure keymap in X11
   # services.xserver.xkb.layout  = "us";
@@ -104,7 +102,6 @@
     ];
   };
 
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -115,7 +112,6 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
-
  
   ## update system  
   system.autoUpgrade.enable        = false;
@@ -139,7 +135,6 @@
     settings.PermitRootLogin = "no";
   };
 
-
   # Open ports in the firewall.
   networking.firewall.enable = true;
   ## UDP ports
@@ -156,7 +151,6 @@
   # (/run/current-system/configuration.nix). This is useful in case you
   # accidentally delete configuration.nix.
   system.copySystemConfiguration = true;
-
 
   # This will add secrets.yml to the nix store
   # You can avoid this by adding a string to the full path instead, i.e.

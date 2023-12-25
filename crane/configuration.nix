@@ -17,7 +17,6 @@
   networking.hostName = config.hmod.hostname; 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-
   # Enable networking
   networking.networkmanager.enable = true;
 
@@ -34,6 +33,24 @@
   services.xserver.displayManager.lightdm.enable = true;
   services.xserver.desktopManager.lxqt.enable    = true;
 
+  # Enable automatic login for the user.
+  # services.xserver.displayManager.autoLogin.enable    = true;
+  # services.xserver.displayManager.autoLogin.user      = "athan";
+  
+  ## there is option for default desktop sellection
+  # services.xserver.displayManager.defaultSession      = "budgie";
+  # services.xserver.windowManager.herbstluftwm.enable  = true;
+  # services.xserver.windowManager.herbstluftwm.package = true;
+  # services.xserver.desktopManager.budgie.enable       = true;
+  services.xserver.windowManager.i3.enable            = true;
+  services.xserver.windowManager.i3.package           = pkgs.i3-gaps;
+
+  # Configure keymap in X11
+  # services.xserver.xkb.layout  = "us";
+  # services.xserver.xkb.options = "eurosign:e,caps:escape";
+  # services.xserver.xkbOptions = "caps:swapescape";
+  console.useXkbConfig         = true;
+  
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
@@ -77,23 +94,12 @@
                      "scanner"
                      "whireshark"
                      "libvirt"
-                    ];
+                   ];
   #  shell        = pkgs.zsh;
     packages     = with pkgs; [
       thunderbird
     ];
   };
-
-  # Enable automatic login for the user.
-  services.xserver.displayManager.autoLogin.enable    = true;
-  services.xserver.displayManager.autoLogin.user      = "athan";
-  ## there is option for default desktop sellection
-  # services.xserver.displayManager.defaultSession      = "budgie";
-  # services.xserver.windowManager.herbstluftwm.enable  = true;
-  # services.xserver.windowManager.herbstluftwm.package = true;
-  # services.xserver.desktopManager.budgie.enable       = true;
-  # services.xserver.windowManager.i3.enable            = true;
-  # services.xserver.windowManager.i3.package           = pkgs.i3-gaps;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -105,7 +111,6 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
-
  
   ## update system  
   system.autoUpgrade.enable        = false;
@@ -128,10 +133,6 @@
     enable                   = true;
     settings.PermitRootLogin = "no";
   };
-
-  ## change key binds
-  services.xserver.xkbOptions = "caps:swapescape";
-  console.useXkbConfig        = true;
 
   # Open ports in the firewall.
   networking.firewall.enable = true;
