@@ -104,6 +104,18 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  environment.systemPackages = with pkgs; [
+    vim 
+    wget
+    rsync
+    meld
+    sops
+    vim
+    unzip
+    usbutils
+    firefox
+  ];
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;

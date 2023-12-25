@@ -18,9 +18,9 @@
       fsType = "btrfs";
       options = [
         "noatime"
-        "space_cache"
+        # "space_cache"
         "autodefrag"
-        "discard"
+        # "discard"
         ];
     };
 
