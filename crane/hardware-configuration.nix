@@ -16,6 +16,12 @@
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/b922abc3-d5c9-40ed-bdd2-cff5d597d095";
       fsType = "btrfs";
+      options = [
+        "noatime"
+        "space_cache"
+        "autodefrag"
+        "discard"
+        ];
     };
 
   fileSystems."/boot" =
