@@ -4,6 +4,7 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
+    R
     # arp
     aspell
     aspellDicts.el
@@ -22,6 +23,7 @@
     detox
     encfs
     exif
+    exiftool
     expect
     fdupes
     feh
@@ -39,12 +41,12 @@
     hddtemp
     hdparm
     hexcurse
+    highlight
     htop
     iftop
     imagemagick
     lf
     lfs
-    exiftool
     lm_sensors
     lshw
     mc
@@ -53,17 +55,17 @@
     moreutils
     nano
     ncdu
+    neovim
     nmap
     ntp
     pandoc
     pdftk
     pv
-#     python3-astropy
-#     python3-cryptography
-#     python3-ephem
-#     python3-pip
-#     python3-zmq
-    R
+    # python3-astropy
+    # python3-cryptography
+    # python3-ephem
+    # python3-pip
+    # python3-zmq
     rar
     rclone
     rename
@@ -73,7 +75,6 @@
     rxvt-unicode
     shellcheck
     smartmontools
-    highlight
     sxhkd
     timelimit
     tinc
