@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-rsync -ahv "/home/athan/CODE/nixos/"  "athan@192.168.1.104:/home/athan/CODE/tmp_nixos3"
+rsync -ahv --exclude "*.git*" "/home/athan/CODE/nixos/" "athan@10.12.12.6:/home/athan/CODE/tmp_nixos3"
 
