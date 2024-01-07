@@ -34,18 +34,32 @@
      };
    };
 
-
-    scrapeConfigs = [
-      {
-        job_name = "chrysalis";
-        static_configs = [{
-          targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.node.port}" ];
-        }];
-      }
-    ];
-
+  scrapeConfigs = [
+    {
+      job_name = "chrysalis";
+      static_configs = [{
+        targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.node.port}" ];
+      }];
+    }
+  ];
  };
    
+  services.loki = {
+    enable = true;
+    configFile = ./loki.yaml;
+  };
+
+  systemd.services.promtail = {
+    description = "Promtail service for Loki";
+    wantedBy = [ "multi-user.target" ];
+
+    serviceConfig = {
+      ExecStart = ''
+        ${pkgs.grafana-loki}/bin/promtail --config.file ${./promtail.yaml}
+      '';
+    };
+  };
+
 
 }
 
