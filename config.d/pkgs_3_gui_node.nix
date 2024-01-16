@@ -17,6 +17,13 @@
     gitg
     gnome.gnome-disk-utility
     gparted
+    obsidian
     keepassxc
   ];
+
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-25.9.0"  ## for obsidian
+  ];
+
+
 }
