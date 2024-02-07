@@ -14,12 +14,13 @@
   # programs.lf.enable = true;
   home.packages = with pkgs; [
     brave              # web browser
-    # briss
+    briss              # cropping PDF file
     btop               # A monitor of resources
     cheat              # terminal helper
     # crow-translate   # gui translate?
     # czkawka
     dutree             # analyze file system usage written in Rust
+    # electrum           # Lightweight Bitcoin wallet
     # geany
     # geany-with-vte
     glow               # Render markdown on the CLI, with pizzazz!

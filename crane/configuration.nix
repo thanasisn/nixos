@@ -2,7 +2,8 @@
 
 {
   imports =
-    [ 
+    [
+      <home-manager/nixos>
       ./crane.nix                          # this host global variables
       ./hardware-configuration.nix         # results of the hardware scan
       ../config.d/hmod.nix                 # custom module for host globals
@@ -103,7 +104,7 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-    vim 
+    vim
     wget
     rsync
     meld
