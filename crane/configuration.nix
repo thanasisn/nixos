@@ -11,6 +11,15 @@
       "${builtins.fetchTarball "https://github.com/Mic92/sops-nix/archive/master.tar.gz"}/modules/sops" 
     ];
 
+  ## need to run for home-manager
+  ## get home-manger into nixOS as root
+  # # sudo nix-channel --add https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz home-manager
+  # # nix-channel --update
+  ## Init home-manager as a user
+  # $ nix run home-manager/release-23.11 -- init --switch
+  # $ home-manager switch
+
+
   # Bootloader.
   boot.loader.systemd-boot.enable      = true;
   boot.loader.efi.canTouchEfiVariables = true;

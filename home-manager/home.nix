@@ -17,7 +17,7 @@
     briss              # cropping PDF file
     btop               # A monitor of resources
     cheat              # terminal helper
-    # crow-translate   # gui translate?
+    crow-translate     # gui translate?
     # czkawka
     dutree             # analyze file system usage written in Rust
     # electrum           # Lightweight Bitcoin wallet
