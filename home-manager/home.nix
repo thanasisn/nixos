@@ -15,14 +15,15 @@
   home.packages = with pkgs; [
     brave              # web browser
     # briss
-    btop
+    btop               # A monitor of resources
     cheat              # terminal helper
     # crow-translate   # gui translate?
     # czkawka
     dutree             # analyze file system usage written in Rust
     # geany
     # geany-with-vte
-    gpxsee
+    glow               # Render markdown on the CLI, with pizzazz!
+    gpxsee             # GPS log file viewer and analyzer
     lf
     # losslesscut-bin
     # navi               # terminal helper and lancher
@@ -34,9 +35,11 @@
     # rclone-browser
     # rstudio
     thunderbird-bin
+    timeline           # Display and navigate information on a timeline.
     tldr               # terminal helper
     translate-shell    # trans cli translate
     # ueberzugpp         # display images on terminal
+    xdg-ninja          # checks your $HOME for unwanted files and directories.
     # yazi               # terminal file manager
     # youtube-dl        # works ?
     zotero
