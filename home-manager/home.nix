@@ -18,6 +18,7 @@
     btop               # A monitor of resources
     cheat              # terminal helper
     crow-translate     # gui translate?
+    pssh               # Parallel ssh tools
     # czkawka
     dutree             # analyze file system usage written in Rust
     # electrum           # Lightweight Bitcoin wallet
