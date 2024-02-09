@@ -30,6 +30,9 @@
         enabledCollectors = [ "systemd" ];
         port = 9002;
       };
+      smartctl = {
+        enable = true;
+      };
     };
  
    scrapeConfigs = [

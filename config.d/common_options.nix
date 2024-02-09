@@ -110,4 +110,12 @@
       ];
   };
 
+  ## smart
+  services.smartd.enable = true;
+  services.smartd.notifications.x11.enable = true;
+  services.smartd.notifications.test = true;
+
+
+
+
 }
