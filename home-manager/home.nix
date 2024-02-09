@@ -18,9 +18,8 @@
     btop               # A monitor of resources
     cheat              # terminal helper
     crow-translate     # gui translate?
-    pssh               # Parallel ssh tools
     # czkawka
-    dutree             # analyze file system usage written in Rust
+    # dutree             # analyze file system usage written in Rust
     # electrum           # Lightweight Bitcoin wallet
     # geany
     # geany-with-vte
@@ -32,6 +31,7 @@
     neovim
     nvd                # nix package version diff tool
     obsidian           # note taking
+    pssh               # Parallel ssh tools
     qgis               # newer version
     rclone
     # rclone-browser
@@ -41,7 +41,7 @@
     tldr               # terminal helper
     translate-shell    # trans cli translate
     # ueberzugpp         # display images on terminal
-    xdg-ninja          # checks your $HOME for unwanted files and directories.
+    # xdg-ninja          # checks your $HOME for unwanted files and directories.
     # yazi               # terminal file manager
     # youtube-dl        # works ?
     zotero
