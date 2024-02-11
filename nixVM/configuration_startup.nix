@@ -87,6 +87,10 @@
     wget
     rsync
     meld
+    sops
+    vim
+    unzip
+    usbutils
     firefox
   ];
 
