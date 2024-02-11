@@ -15,6 +15,7 @@
     bash
     bash-completion
     bat
+    nvd              # see version diffs in nixos
     bc
     biber
     borgbackup
