@@ -1,25 +1,26 @@
 #!/usr/bin/env bash
 ## created on 2024-01-17
 
-#### Cheack last changes
+#### Check last changes for home-manager
+
+# nix profile history
 
 
-nix profile history
-
+## Using nix
 echo ""
-echo "----------"
+echo "--- Changes in each generation ---"
 echo ""
-
-## show changes from last generation
 nix profile diff-closures --profile ~/.local/state/nix/profiles/home-manager
 
-echo ""
-echo "----------"
-echo ""
-## using nvd
-last="$(find "$HOME/.local/state/nix/profiles/" -name "*home-manager-*" | sort | tail -n1)"
-previous="$(find "$HOME/.local/state/nix/profiles/" -name "*home-manager-*" | sort | tail -n2 | head -n1)"
 
+## Using nvd
+echo ""
+echo "--- Changes on the last generations -------"
+echo ""
+last="$(    find "$HOME/.local/state/nix/profiles/" -name "*home-manager-*" | sort | tail -n1)"
+previous="$(find "$HOME/.local/state/nix/profiles/" -name "*home-manager-*" | sort | tail -n2 | head -n1)"
 nvd diff "$previous" "$last"
+
+
 
 exit 0 

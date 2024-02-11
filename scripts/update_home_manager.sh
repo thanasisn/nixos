@@ -5,7 +5,7 @@
 
 nix-channel --update
 
-nix flake update --flake "$HOME/CODE/nixos/home-manager"
+# nix flake update --flake "$HOME/CODE/nixos/home-manager"
 
 ## with flake
 # nix run nixpkgs\#home-manager -- switch --flake "$HOME/CODE/nixos/home-manager/#athan"

@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-## always upadte secrets
-# cp -v /home/athan/nixos/nixVM/secrets/example.yaml /etc/nixos/secrets/example.yaml
-
 ## update?
 # nix-channel --update
 
@@ -11,7 +8,7 @@ nixos-rebuild -I nixos-config="./configuration.nix" switch
 
 # nixos-rebuild --verbose -I nixos-config="./configuration.nix" switch
 
-## cleanup a litle 
+## cleanup a litle
 nix-collect-garbage
 
 ## list generations
