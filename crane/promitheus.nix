@@ -28,6 +28,7 @@
       node = {
         enable = true;
         enabledCollectors = [
+          "smartctl"
           "conntrack"
           "diskstats"
           "entropy"

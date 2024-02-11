@@ -1,20 +1,19 @@
 #!/usr/bin/env bash
 ## created on 2023-12-12
 
-#### enter description here
+#### Update, switch and remove old for home-manager
 
 nix-channel --update
 
+## with flakes
 # nix flake update --flake "$HOME/CODE/nixos/home-manager"
-
-## with flake
 # nix run nixpkgs\#home-manager -- switch --flake "$HOME/CODE/nixos/home-manager/#athan"
 
-## no flake?
+## without flakes
 home-manager switch -f "$HOME/CODE/nixos/home-manager/home.nix"
 
-
-"$HOME/CODE/nixos/home-manager/trim-generation.sh" 30 30 home-manager
+## remove old generations
+"./trim-generation.sh" 30 30 home-manager
 
 
 ## Delete all generations created more than number days ago
@@ -33,10 +32,4 @@ home-manager switch -f "$HOME/CODE/nixos/home-manager/home.nix"
 # nix-collect-garbage --delete-older-than  30d
 
 
-## display changes
-# "$HOME/CODE/nixos/home-manager/check_changes.sh"
-
-
 exit 0
-
-
