@@ -11,15 +11,22 @@
     allowUnfreePredicate = (pkg: true);
   };
 
+#test
+  programs.autojump.enableZshIntegration = true;
+  programs.zoxide.enableZshIntegration   = true;
+
   # programs.lf.enable = true;
   home.packages = with pkgs; [
+    autojump           # folder jumper
+    zoxide             # folder jumper #todo
     brave              # web browser
     briss              # cropping PDF file
     btop               # A monitor of resources
     cheat              # terminal helper
     crow-translate     # gui translate?
-    # czkawka
-    # dutree             # analyze file system usage written in Rust
+    # nox                # tools to work with nix 
+    czkawka            # duplicate finder
+    # dutree             # - analyze file system usage written in Rust
     # electrum           # Lightweight Bitcoin wallet
     # geany
     # geany-with-vte
@@ -33,8 +40,8 @@
     obsidian           # note taking
     pssh               # Parallel ssh tools
     qgis               # newer version
-    rclone
-    # rclone-browser
+    rclone             # Command line program to sync files and directories to and from cloud storage
+    rclone-browser     # Graphical Frontend to Rclone written in Qt
     # rstudio
     thunderbird-bin
     timeline           # Display and navigate information on a timeline.
@@ -90,9 +97,9 @@
   #
   #  /etc/profiles/per-user/athan/etc/profile.d/hm-session-vars.sh
   #
-  home.sessionVariables = {
-    # EDITOR = "emacs";
-  };
+  # home.sessionVariables = {
+  #   EDITOR = "vim";
+  # };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

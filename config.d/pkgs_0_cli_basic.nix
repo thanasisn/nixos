@@ -17,6 +17,7 @@
     gocryptfs
     htop
     iftop
+    cryptsetup
     ipset
     lm_sensors
     magic-wormhole

@@ -28,7 +28,7 @@
       node = {
         enable = true;
         enabledCollectors = [
-          # "smartctl"
+          "smartctl"
           "systemd"
           # "textfile"
           # "conntrack"
@@ -80,6 +80,17 @@
 #      '';
 #    };
 #  };
+
+
+  ## test munin
+  services.munin-node.enable = true;
+  services.munin-cron.enable = true;
+  services.munin-cron.hosts  =''
+    [${config.networking.hostName}]
+    address localhost
+  '';
+
+
 
 }
 
