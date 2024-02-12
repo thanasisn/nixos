@@ -44,6 +44,9 @@
     rclone-browser     # Graphical Frontend to Rclone written in Qt
     # rstudio
     thunderbird-bin
+    skypeforlinux
+    viber
+    spyder             # python IDE
     timeline           # Display and navigate information on a timeline.
     tldr               # terminal helper
     translate-shell    # trans cli translate
@@ -96,13 +99,13 @@
   # or
   #
   #  /etc/profiles/per-user/athan/etc/profile.d/hm-session-vars.sh
-  #
+
   # home.sessionVariables = {
   #   EDITOR = "vim";
   # };
 
-  # test for non NixOs linux
-  targers.genericLinux.enable = true;
+  # test for non-NixOs linux
+  # targers.genericLinux.enable = true;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

@@ -12,6 +12,7 @@
     # searchmonkey
     adwaita-qt
     arrow-cpp
+    spyder
     cdo
     conky
     czkawka
