@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 ## created on 2023-12-12
 
-#### Update, switch and remove old for home-manager
-
-nix-channel --update
+#### Update and switch home-manager
 
 ## with flakes
 # nix flake update --flake "$HOME/CODE/nixos/home-manager"
@@ -30,6 +28,11 @@ home-manager switch -f "$HOME/CODE/nixos/home-manager/home.nix"
 
 ## delete older than n days
 # nix-collect-garbage --delete-older-than  30d
+
+
+## display changes
+"./changes_home_manager.sh"
+
 
 
 exit 0

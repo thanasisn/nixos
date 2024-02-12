@@ -18,13 +18,12 @@
   # programs.lf.enable = true;
   home.packages = with pkgs; [
     autojump           # folder jumper
-    zoxide             # folder jumper #todo
     brave              # web browser
     briss              # cropping PDF file
     btop               # A monitor of resources
     cheat              # terminal helper
+    conda              # for python usage
     crow-translate     # gui translate?
-    # nox                # tools to work with nix 
     czkawka            # duplicate finder
     # dutree             # - analyze file system usage written in Rust
     # electrum           # Lightweight Bitcoin wallet
@@ -33,9 +32,10 @@
     glow               # Render markdown on the CLI, with pizzazz!
     gpxsee             # GPS log file viewer and analyzer
     lf
-    # losslesscut-bin
+    losslesscut-bin    # cut/trim video files
     # navi               # terminal helper and lancher
     neovim
+    # nox                # - tools to work with nix
     nvd                # nix package version diff tool
     obsidian           # note taking
     pssh               # Parallel ssh tools
@@ -49,9 +49,9 @@
     translate-shell    # trans cli translate
     # ueberzugpp         # display images on terminal
     # xdg-ninja          # checks your $HOME for unwanted files and directories.
-    # yazi               # terminal file manager
     # youtube-dl        # works ?
     zotero
+    zoxide             # folder jumper #todo
 
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
@@ -100,6 +100,9 @@
   # home.sessionVariables = {
   #   EDITOR = "vim";
   # };
+
+  # test for non NixOs linux
+  targers.genericLinux.enable = true;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
