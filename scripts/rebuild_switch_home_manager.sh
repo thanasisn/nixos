@@ -3,6 +3,7 @@
 
 #### Update and switch home-manager
 
+export NIXPKGS_ALLOW_INSECURE=1
 ## with flakes
 # nix flake update --flake "$HOME/CODE/nixos/home-manager"
 # nix run nixpkgs\#home-manager -- switch --flake "$HOME/CODE/nixos/home-manager/#athan"
