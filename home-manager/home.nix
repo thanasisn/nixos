@@ -11,7 +11,7 @@
     allowUnfreePredicate = (pkg: true);
   };
 
-#test
+  #test
   programs.autojump.enableZshIntegration = true;
   programs.zoxide.enableZshIntegration   = true;
 
@@ -51,8 +51,8 @@
     tldr               # terminal helper
     translate-shell    # trans cli translate
     # ueberzugpp         # display images on terminal
-    # xdg-ninja          # checks your $HOME for unwanted files and directories.
-    # youtube-dl        # works ?
+    xdg-ninja          # checks your $HOME for unwanted files and directories.
+    youtube-dl        # works ?
     zotero
     zoxide             # folder jumper #todo
 

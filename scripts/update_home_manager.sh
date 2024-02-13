@@ -3,6 +3,8 @@
 
 #### Update and switch home-manager
 
+export NIXPKGS_ALLOW_INSECURE=1
+
 nix-channel --update
 
 ## with flakes
@@ -23,7 +25,7 @@ home-manager switch -f "$HOME/CODE/nixos/home-manager/home.nix"
 # nix-env --delete-genarations +5
 
 ## deletes unreachable paths in the Nix store
-# nix store gc
+nix store gc
 
 ## delete all old profiles
 # nix-collect-garbage -d
