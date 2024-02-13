@@ -55,6 +55,7 @@
     youtube-dl        # works ?
     zotero
     zoxide             # folder jumper #todo
+    golden-cheetah-bin
 
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
