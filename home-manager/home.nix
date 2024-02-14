@@ -15,7 +15,6 @@
   programs.autojump.enableZshIntegration = true;
   programs.zoxide.enableZshIntegration   = true;
 
-  # programs.lf.enable = true;
   home.packages = with pkgs; [
     autojump           # folder jumper
     brave              # web browser
@@ -26,36 +25,39 @@
     crow-translate     # gui translate?
     czkawka            # duplicate finder
     # dutree             # - analyze file system usage written in Rust
-    # electrum           # Lightweight Bitcoin wallet
+    electrum           # Lightweight Bitcoin wallet
     # geany
     # geany-with-vte
     glow               # Render markdown on the CLI, with pizzazz!
+    golden-cheetah
+    # golden-cheetah-bin
     gpxsee             # GPS log file viewer and analyzer
-    lf
+    julia-bin          # probably the latest
+    lf                 # terminal file manager
     losslesscut-bin    # cut/trim video files
-    # navi               # terminal helper and lancher
+    # navi               # terminal helper and launcher
     neovim
-    # nox                # - tools to work with nix
+    # nox                # - tools to work with nix old not working
     nvd                # nix package version diff tool
     obsidian           # note taking
     pssh               # Parallel ssh tools
-    qgis               # newer version
+    # qgis               # newer version needs compiling
+    qgis-ltr           # long term release needs compiling
     rclone             # Command line program to sync files and directories to and from cloud storage
     rclone-browser     # Graphical Frontend to Rclone written in Qt
     # rstudio
-    thunderbird-bin
-    skypeforlinux
-    viber
+    skypeforlinux      # skype works
     spyder             # python IDE
+    thunderbird-bin    # quite updated
     timeline           # Display and navigate information on a timeline.
     tldr               # terminal helper
     translate-shell    # trans cli translate
     # ueberzugpp         # display images on terminal
+    viber              # - ?
     xdg-ninja          # checks your $HOME for unwanted files and directories.
-    youtube-dl        # works ?
-    zotero
+    youtube-dl         # is it blocked works ?
+    zotero             # citation manager
     zoxide             # folder jumper #todo
-    golden-cheetah-bin
 
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
