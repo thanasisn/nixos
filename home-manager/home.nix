@@ -47,7 +47,7 @@
     rclone-browser     # Graphical Frontend to Rclone written in Qt
     # rstudio
     skypeforlinux      # skype works
-    spyder             # python IDE
+    # spyder             # python IDE
     thunderbird-bin    # quite updated
     timeline           # Display and navigate information on a timeline.
     tldr               # terminal helper
