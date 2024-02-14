@@ -16,7 +16,7 @@
   programs.zoxide.enableZshIntegration   = true;
 
   home.packages = with pkgs; [
-    autojump           # folder jumper
+    # autojump           # folder jumper
     brave              # web browser
     briss              # cropping PDF file
     btop               # A monitor of resources
@@ -25,12 +25,12 @@
     crow-translate     # gui translate?
     czkawka            # duplicate finder
     # dutree             # - analyze file system usage written in Rust
-    electrum           # Lightweight Bitcoin wallet
+    # electrum           # work? Lightweight Bitcoin wallet
     # geany
     # geany-with-vte
     glow               # Render markdown on the CLI, with pizzazz!
-    golden-cheetah
-    # golden-cheetah-bin
+    # golden-cheetah      # work?
+    # golden-cheetah-bin  # work?
     gpxsee             # GPS log file viewer and analyzer
     julia-bin          # probably the latest
     lf                 # terminal file manager
