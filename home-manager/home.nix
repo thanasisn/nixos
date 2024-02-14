@@ -55,7 +55,7 @@
     # ueberzugpp         # display images on terminal
     viber              # - ?
     xdg-ninja          # checks your $HOME for unwanted files and directories.
-    youtube-dl         # is it blocked works ?
+    # youtube-dl         # is it blocked works ?
     zotero             # citation manager
     zoxide             # folder jumper #todo
 
