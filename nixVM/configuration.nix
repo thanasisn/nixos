@@ -2,7 +2,8 @@
 
 {
   imports =
-    [ 
+    [
+      <home-manager/nixos>                 # home manafer for users
       ./nixVM.nix                          # this host global variables
       ./hardware-configuration.nix         # results of the hardware scan
       ../config.d/hmod.nix                 # custom module for host globals
