@@ -44,7 +44,7 @@
     obsidian           # note taking
     # apostrophe         # markdown editor
     zettlr             # markdown editor
-    trilium-desktop    # markdown editor
+    # trilium-desktop    # markdown editor
     # thiefmd            # ?? markdown editor
     pssh               # Parallel ssh tools
     # qgis               # newer version needs compiling
