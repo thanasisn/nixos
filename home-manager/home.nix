@@ -24,24 +24,28 @@
     conda              # for python usage
     crow-translate     # gui translate?
     czkawka            # duplicate finder
-    mindforger         # markdown notebook intersting
-    marktext           # markdown editor
     # dutree             # - analyze file system usage written in Rust
-    # electrum           # work? Lightweight Bitcoin wallet
+    # electrum           # debian? Lightweight Bitcoin wallet
     # geany
     # geany-with-vte
     glow               # Render markdown on the CLI, with pizzazz!
-    # golden-cheetah      # work?
-    # golden-cheetah-bin  # work?
+    # golden-cheetah      # debian?
+    # golden-cheetah-bin  # debian?
     gpxsee             # GPS log file viewer and analyzer
     julia-bin          # probably the latest
     lf                 # terminal file manager
     losslesscut-bin    # cut/trim video files
+    # marktext           # debian? markdown editor
+    mindforger         # markdown notebook intersting
     # navi               # terminal helper and launcher
     neovim
     # nox                # - tools to work with nix old not working
     nvd                # nix package version diff tool
     obsidian           # note taking
+    # apostrophe         # markdown editor
+    zettlr             # markdown editor
+    trilium-desktop    # markdown editor
+    # thiefmd            # ?? markdown editor
     pssh               # Parallel ssh tools
     # qgis               # newer version needs compiling
     qgis-ltr           # long term release needs compiling
@@ -55,7 +59,7 @@
     tldr               # terminal helper
     translate-shell    # trans cli translate
     # ueberzugpp         # display images on terminal
-    viber              # - ?
+    # viber              # - debian?
     xdg-ninja          # checks your $HOME for unwanted files and directories.
     # youtube-dl         # is it blocked works ?
     zotero             # citation manager
