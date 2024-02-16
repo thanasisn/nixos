@@ -24,6 +24,8 @@
     conda              # for python usage
     crow-translate     # gui translate?
     czkawka            # duplicate finder
+    mindforger         # markdown notebook intersting
+    marktext           # markdown editor
     # dutree             # - analyze file system usage written in Rust
     # electrum           # work? Lightweight Bitcoin wallet
     # geany
@@ -76,6 +78,7 @@
 
   nixpkgs.config.permittedInsecurePackages = [
     "electron-25.9.0"
+    "openssl-1.1.1w"
   ];
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
