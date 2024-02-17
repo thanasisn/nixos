@@ -16,6 +16,7 @@
   programs.zoxide.enableZshIntegration   = true;
 
   home.packages = with pkgs; [
+    # apostrophe         # markdown editor
     # autojump           # folder jumper
     brave              # web browser
     briss              # cropping PDF file
@@ -38,15 +39,11 @@
     # marktext           # debian? markdown editor
     mindforger         # markdown notebook intersting
     # navi               # terminal helper and launcher
+    nb                 # terminal notebook manager
     neovim
     # nox                # - tools to work with nix old not working
     nvd                # nix package version diff tool
     obsidian           # note taking
-    # apostrophe         # markdown editor
-    zettlr             # markdown editor
-    nb                 # terminal notebook manager
-    # trilium-desktop    # markdown editor
-    # thiefmd            # ?? markdown editor
     pssh               # Parallel ssh tools
     # qgis               # newer version needs compiling
     qgis-ltr           # long term release needs compiling
@@ -55,14 +52,17 @@
     # rstudio
     skypeforlinux      # skype works
     # spyder             # python IDE
+    # thiefmd            # ?? markdown editor
     thunderbird-bin    # quite updated
     timeline           # Display and navigate information on a timeline.
     tldr               # terminal helper
     translate-shell    # trans cli translate
+    # trilium-desktop    # markdown editor
     # ueberzugpp         # display images on terminal
     # viber              # - debian?
     xdg-ninja          # checks your $HOME for unwanted files and directories.
     # youtube-dl         # is it blocked works ?
+    zettlr             # markdown editor
     zotero             # citation manager
     zoxide             # folder jumper #todo
 
