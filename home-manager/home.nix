@@ -65,6 +65,9 @@
     zettlr             # markdown editor
     zotero             # citation manager
     zoxide             # folder jumper #todo
+    # qalculate-qt       # Desktop calculator
+    qalculate-gtk      # Desktop calculator
+    libqalculate       # Desktop calculator
 
 
     # # It is sometimes useful to fine-tune packages, for example, by applying

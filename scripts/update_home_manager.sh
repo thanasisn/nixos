@@ -11,11 +11,16 @@ nix-channel --update
 # nix flake update --flake "$HOME/CODE/nixos/home-manager"
 # nix run nixpkgs\#home-manager -- switch --flake "$HOME/CODE/nixos/home-manager/#athan"
 
-## without flakes
-home-manager switch -f "$HOME/CODE/nixos/home-manager/home.nix"
+PREFX="/home/athan/CODE/nixos"
+
+## rebuild and switch
+home-manager switch -f "$PREFX/home-manager/home.nix"
 
 ## remove old generations
-"./trim-generation.sh" 30 30 home-manager
+"$PREFX/scripts/trim-generation.sh" 30 30 home-manager
+
+## deletes unreachable paths in the Nix store
+nix store gc
 
 
 ## Delete all generations created more than number days ago
@@ -24,9 +29,6 @@ home-manager switch -f "$HOME/CODE/nixos/home-manager/home.nix"
 ## Keep the last number generations, along with any newer than current
 # nix-env --delete-genarations +5
 
-## deletes unreachable paths in the Nix store
-nix store gc
-
 ## delete all old profiles
 # nix-collect-garbage -d
 
@@ -34,9 +36,7 @@ nix store gc
 # nix-collect-garbage --delete-older-than  30d
 
 
-## display changes
-"./changes_home_manager.sh"
-
-
+## Display changes
+"$PREFX/scripts/changes_home_manager.sh"
 
 exit 0
