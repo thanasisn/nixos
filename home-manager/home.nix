@@ -62,7 +62,7 @@
     # viber              # - debian?
     xdg-ninja          # checks your $HOME for unwanted files and directories.
     # youtube-dl         # is it blocked works ?
-    zettlr             # markdown editor
+    # zettlr             # markdown editor
     zotero             # citation manager
     zoxide             # folder jumper #todo
     # qalculate-qt       # Desktop calculator
