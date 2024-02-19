@@ -12,6 +12,7 @@
     astyle
     autofs5
     autojump
+    emacs
     bash
     bash-completion
     bat

@@ -3,6 +3,7 @@
 #### Update build and switch system
 
 PREFX="/home/athan/CODE/nixos"
+export NIXPKGS_ALLOW_INSECURE=1
 
 ## update
 nix-channel --update

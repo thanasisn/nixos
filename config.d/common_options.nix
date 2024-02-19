@@ -1,4 +1,4 @@
-{ config, pkgs, options, ... }:
+{ config, pkgs, options, lib, ... }:
 
 {
   # Vim for all
@@ -54,18 +54,41 @@
 
 
   systemd.services.postfix.after = [ "sops-nix.service" ];
+ 
   sops.secrets.postfix_sasl_passwd = {
   #  owner = config.services.postfix.user;
   #  key   = "postfix_sasl_passwd";
     mode  = "0400";
   };
 
+  sops.secrets."systemgmailusr" = {};
+
+  sops.secrets."aliases" = {
+    mode = "0644";
+  };
+
+  environment.etc = {
+    "aliases" = {
+       source = "/run/secrets/aliases" ;
+       mode   = "0644";
+    };
+  };
+
+# my.cron.script = ''
+#     cat ${config.sops.secrets."systemgmailusr".path}
+# '';
+
   services.postfix = {
     enable    = true;
     relayHost = "smtp.gmail.com";
     relayPort = 587;
+
     # mapFiles.mycreds = config.sops.secrets.postfix_sasl_passwd.path;
     mapFiles.postfix_sasl_passwd = "/run/secrets/postfix_sasl_passwd";
+
+    ## test
+    # mapFiles.aliasFiles = "/run/secrets/etc/aliases";
+    #  mapFiles.aliasesFiles = config.sops.secrets."etc/aliases".path;
 
     config = {
       myhostname                 = config.hmod.hostname;
@@ -73,34 +96,37 @@
       smtp_sasl_auth_enable      = "yes";
       smtp_sasl_security_options = "noanonymous";
       smtp_sasl_password_maps    = "hash:/etc/postfix/postfix_sasl_passwd";
-     # smtp_tls_wrappermode       = "yes";
-     # smtp_tls_security_level    = "encrypt";
+      #NO alias_maps                 = lib.mkForce "/etc/aliases";
+      # alias_maps                 = lib.mkForce "hash:/etc/aliases";
+      # alias_database             = lib.mkForce "hash:/etc/aliases";
+      alias_maps                 = lib.mkForce "";
+      # alias_maps                 = lib.mkForce "/run/secrets/aliases";
+      # alias_maps                 = lib.mkForce "hash:/run/secrets/aliases";
+      # alias_database             = "/etc/aliases.db";
+      aliasFiles                 = "/etc/aliases";
+      # virtual                   = "@crane ath.nats.sys@gmail.com";
+      virtual                    = "* ath.nats.sys@gmail.com";
+      # smtp_tls_wrappermode       = "yes";
+      # smtp_tls_security_level    = "encrypt";
     };
 
-    extraConfig = ''
-    # smtp_tls_CAfile = /etc/ssl/certs/ca-certificates.crt
-    # smtpd_relay_restrictions = permit_mynetworks permit_sasl_authenticated defer_unauth_destination
-    # myhostname = nixVM
-    alias_maps = hash:/etc/aliases
-    alias_database = hash:/etc/aliases
-    ## ? myorigin = /etc/mailname
-    mydestination = $myhostname, nixVM.net, nixVM, localhost.localdomain, localhost
-    # mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128
-    # mailbox_size_limit = 0
-    # recipient_delimiter = +
-    # inet_interfaces = all
-    # inet_protocols = all
-    '';
+   #  extraConfig = ''
+   #  # smtp_tls_CAfile = /etc/ssl/certs/ca-certificates.crt
+   #  # smtpd_relay_restrictions = permit_mynetworks permit_sasl_authenticated defer_unauth_destination
+   #  # myhostname = nixVM
+   #  # alias_maps     = hash:/etc/aliases
+   #  # alias_database = hash:/etc/aliases
+   #  ## ? myorigin = /etc/mailname
+   #  mydestination = $myhostname, nixVM.net, nixVM, localhost.localdomain, localhost
+   #  # mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128
+   #  # mailbox_size_limit = 0
+   #  # recipient_delimiter = +
+   #  # inet_interfaces = all
+   #  # inet_protocols = all
+   #  '';
   };
 
 
-  sops.secrets."etc/aliases" = {};
-  environment.etc = {
-    "aliases" = {
-       source = "/run/secrets/etc/aliases" ;
-       mode   = "0644";
-    };
-  };
 
   ## test cron and email
   services.cron = {
@@ -117,7 +143,7 @@
   systemd.timers."hello-world" = {
     wantedBy = [ "timers.target" ];
     timerConfig = {
-      OnBootSec = "5m";
+      OnBootSec       = "5m";
       OnUnitActiveSec = "5m";
       Unit = "hello-world.service";
     };
@@ -161,17 +187,15 @@
 
 
 
-
-
-
-
-
   ## smart
   services.smartd.enable                   = true;
   services.smartd.notifications.x11.enable = true;
   services.smartd.notifications.test       = true;
 
 
-
+  nixpkgs.config.permittedInsecurePackages = [
+    "openssl-1.1.1w"
+    "electron-25.9.0"
+  ];
 
 }

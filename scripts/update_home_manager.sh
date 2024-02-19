@@ -5,6 +5,7 @@
 
 export NIXPKGS_ALLOW_INSECURE=1
 
+## update
 nix-channel --update
 
 ## with flakes

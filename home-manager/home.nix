@@ -26,7 +26,7 @@
     crow-translate     # gui translate?
     czkawka            # duplicate finder
     # dutree             # - analyze file system usage written in Rust
-    # electrum           # debian? Lightweight Bitcoin wallet
+    # electrum           # Debian? Lightweight Bitcoin wallet
     # geany
     # geany-with-vte
     glow               # Render markdown on the CLI, with pizzazz!
@@ -39,7 +39,7 @@
     libqalculate       # Desktop calculator
     losslesscut-bin    # cut/trim video files
     # marktext           # debian? markdown editor
-    mindforger         # markdown notebook intersting
+    mindforger         # markdown notebook interesting
     # navi               # terminal helper and launcher
     nb                 # terminal notebook manager
     neovim
@@ -56,10 +56,11 @@
     # rstudio
     skypeforlinux      # skype works
     # spyder             # python IDE
-    # thiefmd            # ?? markdown editor
+    # thiefmd            # ?? Markdown editor
     thunderbird-bin    # quite updated
     timeline           # Display and navigate information on a timeline.
     tldr               # terminal helper
+    pyenv              # setup it ??
     translate-shell    # trans cli translate
     # trilium-desktop    # markdown editor
     # ueberzugpp         # display images on terminal
