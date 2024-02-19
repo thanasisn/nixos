@@ -33,7 +33,7 @@
     # golden-cheetah      # debian?
     # golden-cheetah-bin  # debian?
     gpxsee             # GPS log file viewer and analyzer
-    jabref             # bibliography reference
+    # jabref             # bibliography reference
     julia-bin          # probably the latest
     lf                 # terminal file manager
     libqalculate       # Desktop calculator
