@@ -22,7 +22,7 @@
     briss              # cropping PDF file
     btop               # A monitor of resources
     cheat              # terminal helper
-    conda              # for python usage
+    # conda              # for python usage
     crow-translate     # gui translate?
     czkawka            # duplicate finder
     # dutree             # - analyze file system usage written in Rust
@@ -33,8 +33,10 @@
     # golden-cheetah      # debian?
     # golden-cheetah-bin  # debian?
     gpxsee             # GPS log file viewer and analyzer
+    jabref             # bibliography reference
     julia-bin          # probably the latest
     lf                 # terminal file manager
+    libqalculate       # Desktop calculator
     losslesscut-bin    # cut/trim video files
     # marktext           # debian? markdown editor
     mindforger         # markdown notebook intersting
@@ -45,6 +47,8 @@
     nvd                # nix package version diff tool
     obsidian           # note taking
     pssh               # Parallel ssh tools
+    qalculate-gtk      # Desktop calculator
+    # qalculate-qt       # Desktop calculator
     # qgis               # newer version needs compiling
     qgis-ltr           # long term release needs compiling
     rclone             # Command line program to sync files and directories to and from cloud storage
@@ -65,9 +69,6 @@
     # zettlr             # markdown editor
     zotero             # citation manager
     zoxide             # folder jumper #todo
-    # qalculate-qt       # Desktop calculator
-    qalculate-gtk      # Desktop calculator
-    libqalculate       # Desktop calculator
 
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
