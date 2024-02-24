@@ -46,6 +46,10 @@
     neovim
     # nox                # - tools to work with nix old not working
     nvd                # nix package version diff tool
+    signal-cli         # signal messager
+    signal-desktop     # signal messager
+    telegram-desktop   # telegram messanger
+    tg                 # telegram messanger
     obsidian           # note taking
     pssh               # Parallel ssh tools
     qalculate-gtk      # Desktop calculator
