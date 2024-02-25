@@ -34,7 +34,6 @@
     # golden-cheetah-bin  # debian?
     gpxsee             # GPS log file viewer and analyzer
     # jabref             # bibliography reference
-    ranger             # terminal file manager
     julia-bin          # probably the latest
     lf                 # terminal file manager
     libqalculate       # Desktop calculator
@@ -46,30 +45,32 @@
     neovim
     # nox                # - tools to work with nix old not working
     nvd                # nix package version diff tool
-    signal-cli         # signal messager
-    signal-desktop     # signal messager
-    telegram-desktop   # telegram messanger
-    tg                 # telegram messanger
     obsidian           # note taking
     pssh               # Parallel ssh tools
+    pyenv              # setup it ??
     qalculate-gtk      # Desktop calculator
     # qalculate-qt       # Desktop calculator
     # qgis               # newer version needs compiling
     qgis-ltr           # long term release needs compiling
+    ranger             # terminal file manager
     rclone             # Command line program to sync files and directories to and from cloud storage
     rclone-browser     # Graphical Frontend to Rclone written in Qt
     # rstudio
+    signal-cli         # signal messager
+    signal-desktop     # signal messager
     skypeforlinux      # skype works
     # spyder             # python IDE
+    telegram-desktop   # telegram messanger
+    tg                 # telegram messanger
     # thiefmd            # ?? Markdown editor
     thunderbird-bin    # quite updated
     timeline           # Display and navigate information on a timeline.
     tldr               # terminal helper
-    pyenv              # setup it ??
     translate-shell    # trans cli translate
     # trilium-desktop    # markdown editor
     # ueberzugpp         # display images on terminal
     # viber              # - debian?
+    vnote              # notebook gui 
     xdg-ninja          # checks your $HOME for unwanted files and directories.
     # youtube-dl         # is it blocked works ?
     # zettlr             # markdown editor
