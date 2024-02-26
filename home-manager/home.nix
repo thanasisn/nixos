@@ -70,6 +70,7 @@
     # trilium-desktop    # markdown editor
     # ueberzugpp         # display images on terminal
     # viber              # - debian?
+    quarto             # scientific and technical publishing system built on Pandoc
     vnote              # notebook gui 
     xdg-ninja          # checks your $HOME for unwanted files and directories.
     # youtube-dl         # is it blocked works ?
