@@ -30,6 +30,7 @@
     # electrum           # Debian? Lightweight Bitcoin wallet
     # geany
     # geany-with-vte
+    ventoy-bin-full    # there are more versions
     glow               # Render markdown on the CLI, with pizzazz!
     # golden-cheetah      # debian?
     # golden-cheetah-bin  # debian?
