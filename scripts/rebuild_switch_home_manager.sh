@@ -1,23 +1,29 @@
 #!/usr/bin/env bash
-## created on 2023-12-12
 
 #### Update and switch home-manager
 
+export NIXPKGS_ALLOW_INSECURE=1
 ## with flakes
 # nix flake update --flake "$HOME/CODE/nixos/home-manager"
 # nix run nixpkgs\#home-manager -- switch --flake "$HOME/CODE/nixos/home-manager/#athan"
 
 PREFX="/home/athan/CODE/nixos"
+LOGFL="${0%.sh}.log"
 
-## rebuild and switch
-home-manager switch -f "$PREFX/home-manager/home.nix"
+echo "NixOs Rebuilding and switch..."
+home-manager switch                 \
+  -f "$PREFX/home-manager/home.nix" \
+    switch &> "$LOGFL" || (grep --color error "$LOGFL" && false)
 
-## remove old generations
+echo "Remove old generations..."
 "$PREFX/scripts/trim-generation.sh" 30 30 home-manager
 
-## deletes unreachable paths in the Nix store
+echo "Delete unreachable paths in the Nix store..."
 nix store gc
 
+echo "Run garbage collector..."
+## cleanup a litle?
+nix-collect-garbage
 
 ## Delete all generations created more than number days ago
 # nix-env --delete-generations 30d
@@ -32,7 +38,7 @@ nix store gc
 # nix-collect-garbage --delete-older-than  30d
 
 
-## Display changes
+echo "Display last changes..."
 "$PREFX/scripts/changes_home_manager.sh"
 
 exit 0

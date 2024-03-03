@@ -28,6 +28,11 @@
     LC_TIME           = "en_DK.UTF-8";
   };
 
+  # make zsh available to the system
+  programs.zsh.enable = true;
+  # and set it for all users
+  users.defaultUserShell = pkgs.zsh;
+
   # Configure keymap in X11
   services.xserver = {
     layout     = "us,gr";
@@ -54,7 +59,7 @@
 
 
   systemd.services.postfix.after = [ "sops-nix.service" ];
- 
+
   sops.secrets.postfix_sasl_passwd = {
   #  owner = config.services.postfix.user;
   #  key   = "postfix_sasl_passwd";

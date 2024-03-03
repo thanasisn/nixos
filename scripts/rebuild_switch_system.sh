@@ -3,17 +3,27 @@
 #### Build and switch system without update
 
 PREFX="/home/athan/CODE/nixos"
+LOGFL="${0%.sh}.log"
 
+echo "NixOs Rebuilding..."
+# https://gist.github.com/0atman/1a5133b842f929ba4c1e195ee67599d5
 ## rebuild and switch
-nixos-rebuild -I nixos-config="../$(hostname)/configuration.nix" switch
+nixos-rebuild                                          \
+    -I nixos-config="../$(hostname)/configuration.nix" \
+    switch &> "$LOGFL" || (grep --color error "$LOGFL" && false)
 
-## remove old generations
+# # Get current generation metadata
+# current=$(nixos-rebuild list-generations | grep current)
+# # Commit all changes witih the generation metadata 
+# git commit -am "$(hostname) $current"
+
+echo "Remove old generations..."
 "$PREFX/scripts/trim-generation.sh" 30 30 system
 
-## deletes unreachable paths in the Nix store
+echo "Delete unreachable paths in the Nix store..."
 nix store gc
 
-
+echo "Run garbage collector..."
 ## cleanup a litle?
 nix-collect-garbage
 
@@ -23,9 +33,7 @@ nix-collect-garbage
 ## as root delete broken generations 205 and 206 
 # sudo nix-env --profile /nix/var/nix/profiles/system --delete-generations 205 206
 
-
-
-## Display changes
+echo "Display last changes..."
 "$PREFX/scripts/changes_system.sh"
 
 exit 0
