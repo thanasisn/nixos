@@ -9,7 +9,9 @@ export NIXPKGS_ALLOW_INSECURE=1
 
 SCRIPT="$(basename "$0")"
 PREFX="/home/athan/CODE/nixos"
-LOGFL="/home/athan/LOGs/SYSTEM_LOGS/${SCRIPT%.sh}_$(hostname).log"
+LOGDR="/home/athan/LOGs/SYSTEM_LOGS/"
+LOGFL="$LOGDR/${SCRIPT%.sh}_$(hostname).log"
+mkdir -p "$LOGDR"
 
 echo "NixOs Rebuilding and switch..."
 home-manager switch                 \
