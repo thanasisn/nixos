@@ -7,8 +7,9 @@ export NIXPKGS_ALLOW_INSECURE=1
 # nix flake update --flake "$HOME/CODE/nixos/home-manager"
 # nix run nixpkgs\#home-manager -- switch --flake "$HOME/CODE/nixos/home-manager/#athan"
 
+SCRIPT="$(basename "$0")"
 PREFX="/home/athan/CODE/nixos"
-LOGFL="${0%.sh}.log"
+LOGFL="/home/athan/LOGs/SYSTEM_LOGS/${SCRIPT%.sh}_$(hostname).log"
 
 echo "NixOs Rebuilding and switch..."
 home-manager switch                 \

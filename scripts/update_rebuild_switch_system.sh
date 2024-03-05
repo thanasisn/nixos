@@ -8,8 +8,9 @@ echo "Update..."
 nix-channel --update
 
 
+SCRIPT="$(basename "$0")"
 PREFX="/home/athan/CODE/nixos"
-LOGFL="${0%.sh}.log"
+LOGFL="/home/athan/LOGs/SYSTEM_LOGS/${SCRIPT%.sh}_$(hostname).log"
 
 echo "NixOs Rebuilding..."
 # https://gist.github.com/0atman/1a5133b842f929ba4c1e195ee67599d5
