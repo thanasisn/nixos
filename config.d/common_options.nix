@@ -6,6 +6,10 @@
   environment.variables.VISUAL         = "vim";
   environment.variables.SYSTEMD_EDITOR = "vim";
 
+  # ignore laptop lid
+  services.logind.lidSwitch       = "ignore";
+  services.logind.lidSwitchDocked = "ignore";
+
   # Set your time zone.
   time.timeZone = "Europe/Athens";
 
