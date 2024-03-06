@@ -20,7 +20,7 @@
     diffpdf
     dunst
     evince
-    evolution
+#    evolution
     font-manager
     geany
     gnome.adwaita-icon-theme

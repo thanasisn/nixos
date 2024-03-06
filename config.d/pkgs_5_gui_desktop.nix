@@ -6,7 +6,8 @@
 {
   environment.systemPackages = with pkgs; [
     digikam
-    evolution
+#    evolution
+    thunderbird
     golden-cheetah
     doxygen
     doxygen_gui
@@ -14,7 +15,7 @@
     gpicview
     gpsbabel
     libsForQt5.gwenview
-    qgis
+    qgis-ltr
     tellico
     texinfo
     texlive.combined.scheme-small
