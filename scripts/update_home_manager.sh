@@ -21,7 +21,7 @@ exec 2> >(tee -i "${LOGFL}" >&2)
 
 
 echo "Update..."
-nix-channel --update
+nix-channel -v 3 --update
 
 echo "NixOs Rebuilding and switch..."
 home-manager switch                 \
