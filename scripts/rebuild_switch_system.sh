@@ -5,7 +5,7 @@
 SCRIPT="$(basename "$0")"
 PREFX="/home/athan/CODE/nixos"
 LOGDR="/home/athan/LOGs/SYSTEM_LOGS/"
-LOGFL="$LOGDR/${SCRIPT%.sh}_$(hostname).log"
+LOGFL="$LOGDR/nix_${SCRIPT%.sh}_$(hostname).log"
 mkdir -p "$LOGDR"
 
 echo "NixOs Rebuilding..."

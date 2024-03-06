@@ -46,7 +46,7 @@
   # Enable automatic login for the user.
   services.xserver.displayManager.autoLogin.enable    = true;
   services.xserver.displayManager.autoLogin.user      = "athan";
-  services.xserver.displayManager.autoLogin.timeout   = 10;
+  services.xserver.displayManager.lightdm.autoLogin.timeout   = 10;
 
   ## there is option for default desktop sellection
   # services.xserver.displayManager.defaultSession      = "budgie";

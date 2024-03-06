@@ -4,9 +4,6 @@
 
 export NIXPKGS_ALLOW_INSECURE=1
 
-echo "Update..."
-nix-channel --update
-
 ## with flakes
 # nix flake update --flake "$HOME/CODE/nixos/home-manager"
 # nix run nixpkgs\#home-manager -- switch --flake "$HOME/CODE/nixos/home-manager/#athan"
@@ -14,13 +11,22 @@ nix-channel --update
 SCRIPT="$(basename "$0")"
 PREFX="/home/athan/CODE/nixos"
 LOGDR="/home/athan/LOGs/SYSTEM_LOGS/"
-LOGFL="$LOGDR/${SCRIPT%.sh}_$(hostname).log"
+LOGFL="$LOGDR/nix_${SCRIPT%.sh}_$(hostname).log"
+BLDFL="$LOGDR/nix_${SCRIPT%.sh}_$(hostname).build"
 mkdir -p "$LOGDR"
+
+## Try universal logging
+exec  > >(tee -i "${LOGFL}")
+exec 2> >(tee -i "${LOGFL}" >&2)
+
+
+echo "Update..."
+nix-channel --update
 
 echo "NixOs Rebuilding and switch..."
 home-manager switch                 \
   -f "$PREFX/home-manager/home.nix" \
-    switch &> "$LOGFL" || (grep --color error "$LOGFL" && false)
+    switch &> "$BLDFL" || (grep --color error "$LOGFL" && false)
 
 echo "Remove old generations..."
 "$PREFX/scripts/trim-generation.sh" 30 30 home-manager
