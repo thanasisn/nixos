@@ -28,7 +28,7 @@
       node = {
         enable = true;
         enabledCollectors = [
-          "smartctl"
+         # "smartctl"
           "systemd"
           # "textfile"
           # "conntrack"

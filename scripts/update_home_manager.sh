@@ -13,12 +13,12 @@ PREFX="/home/athan/CODE/nixos"
 LOGDR="/home/athan/LOGs/SYSTEM_LOGS/"
 LOGFL="$LOGDR/nix_${SCRIPT%.sh}_$(hostname).log"
 BLDFL="$LOGDR/nix_${SCRIPT%.sh}_$(hostname).build"
+ERRFL="$LOGDR/nix_${SCRIPT%.sh}_$(hostname).err"
 mkdir -p "$LOGDR"
 
-## Try universal logging
+## universal logging
 exec  > >(tee -i "${LOGFL}")
-exec 2> >(tee -i "${LOGFL}" >&2)
-
+exec 2> >(tee -i "${ERRFL}" >&2)
 
 echo "Update..."
 nix-channel -v 3 --update

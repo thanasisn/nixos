@@ -4,15 +4,21 @@
 
 export NIXPKGS_ALLOW_INSECURE=1
 
-echo "Update..."
-nix-channel --update
-
 
 SCRIPT="$(basename "$0")"
 PREFX="/home/athan/CODE/nixos"
 LOGDR="/home/athan/LOGs/SYSTEM_LOGS/"
 LOGFL="$LOGDR/nix_${SCRIPT%.sh}_$(hostname).log"
+BLDFL="$LOGDR/nix_${SCRIPT%.sh}_$(hostname).build"
+ERRFL="$LOGDR/nix_${SCRIPT%.sh}_$(hostname).err"
 mkdir -p "$LOGDR"
+
+## universal logging
+exec  > >(tee -i "${LOGFL}")
+exec 2> >(tee -i "${ERRFL}" >&2)
+
+echo "Update..."
+nix-channel -v 3 --update
 
 echo "NixOs Rebuilding..."
 # https://gist.github.com/0atman/1a5133b842f929ba4c1e195ee67599d5

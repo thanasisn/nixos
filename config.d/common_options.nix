@@ -10,6 +10,9 @@
   services.logind.lidSwitch       = "ignore";
   services.logind.lidSwitchDocked = "ignore";
 
+  # hdd temp
+  hardware.sensor.hddtemp.enable = true;
+
   # Set your time zone.
   time.timeZone = "Europe/Athens";
 
