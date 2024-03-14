@@ -43,6 +43,7 @@
     # marktext           # debian? markdown editor
     mindforger         # markdown notebook interesting
     # navi               # terminal helper and launcher
+    vscodium-fhs       # ide 
     nb                 # terminal notebook manager
     neovim
     # nox                # - tools to work with nix old not working
