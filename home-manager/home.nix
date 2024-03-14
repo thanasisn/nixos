@@ -77,6 +77,7 @@
     vnote              # notebook gui 
     xdg-ninja          # checks your $HOME for unwanted files and directories.
     # youtube-dl         # is it blocked works ?
+    yt-dlp             # to test
     # zettlr             # markdown editor
     zotero             # citation manager
     zoxide             # folder jumper #todo
