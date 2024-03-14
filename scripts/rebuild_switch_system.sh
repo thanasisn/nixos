@@ -49,4 +49,7 @@ nix-collect-garbage
 echo "Display last changes..."
 "$PREFX/scripts/changes_system.sh"
 
+echo "Nix folder size..."
+du -sh /nix
+
 exit 0
