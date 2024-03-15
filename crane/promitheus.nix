@@ -28,11 +28,11 @@
       node = {
         enable = true;
         enabledCollectors = [
-         # "smartctl"
+          "smartctl"
           "systemd"
           # "textfile"
           # "conntrack"
-          # "diskstats"
+          "diskstats"
           # "entropy"
           # "filefd"
           # "filesystem"
@@ -50,10 +50,14 @@
       ];
         port = 9002;
       };
-      smartctl = {
-        enable = true;
-      };
+#      smartctl = {
+#        enable = true;
+#      };
     };
+
+   services.prometheus.exporters.smartctl = {
+    enable = true;
+   };
 
    scrapeConfigs = [
      {
