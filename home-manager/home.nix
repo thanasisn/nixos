@@ -23,6 +23,7 @@
     briss              # cropping PDF file
     btop               # A monitor of resources
     cheat              # terminal helper
+    audacity           # sound editor
     # conda              # for python usage
     crow-translate     # gui translate?
     czkawka            # duplicate finder
