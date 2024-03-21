@@ -29,7 +29,7 @@ home-manager switch                 \
     switch &> "$BLDFL" || (grep --color error "$LOGFL" && false)
 
 echo "Remove old generations..."
-"$PREFX/scripts/trim-generation.sh" 30 30 home-manager
+"$PREFX/scripts/trim-generation.sh" 20 20 home-manager
 
 echo "Delete unreachable paths in the Nix store..."
 nix store gc
@@ -50,14 +50,10 @@ nix-collect-garbage
 ## delete older than n days
 # nix-collect-garbage --delete-older-than  30d
 
-
 echo "Display last changes..."
 "$PREFX/scripts/changes_home_manager.sh"
 
-echo "Nix folder size..."
-du -sh /nix
-
-echo "Nix folder free..."
+echo "Nix folder..."
 df -h /nix
 
 exit 0

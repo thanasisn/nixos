@@ -54,7 +54,7 @@ echo "Display last changes..."
 echo "Nix folder size..."
 du -sh /nix
 
-echo "Nix folder free..."
+echo "Nix folder..."
 df -h /nix
 
 exit 0
