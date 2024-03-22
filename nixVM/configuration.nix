@@ -5,7 +5,7 @@
     [
       <home-manager/nixos>                 # home manafer for users
       ./nixVM.nix                          # this host global variables
-      ./hardware-configuration.nix         # results of the hardware scan
+      /etc/nixos/hardware-configuration.nix         # results of the hardware scan
       ../config.d/hmod.nix                 # custom module for host globals
       ../config.d/common_options.nix       # common options for all
       "${builtins.fetchTarball "https://github.com/Mic92/sops-nix/archive/master.tar.gz"}/modules/sops" 
@@ -22,7 +22,7 @@
 
   # Bootloader.
   boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/sda";
+  boot.loader.grub.device = "/dev/vda";
   boot.loader.grub.useOSProber = true;
 
   networking.hostName = config.hmod.hostname; 
@@ -112,6 +112,8 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+ 
+  services.spice-vdagentd.enable = true; 
 
   environment.systemPackages = with pkgs; [
     vim
