@@ -19,6 +19,7 @@
     # apostrophe         # markdown editor
     # autojump           # folder jumper
     brave              # web browser
+    massren            # rename multiple files using your text editor
     atuin              # shell history data
     briss              # cropping PDF file
     btop               # A monitor of resources
