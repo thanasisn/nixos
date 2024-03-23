@@ -23,9 +23,12 @@ nix-channel -v 3 --update
 echo "NixOs Rebuilding..."
 # https://gist.github.com/0atman/1a5133b842f929ba4c1e195ee67599d5
 ## rebuild and switch
+# nixos-rebuild                                          \
+#     -I nixos-config="../$(hostname)/configuration.nix" \
+#     switch &> "$LOGFL" || (grep --color error "$LOGFL" && false)
 nixos-rebuild                                          \
     -I nixos-config="../$(hostname)/configuration.nix" \
-    switch &> "$LOGFL" || (grep --color error "$LOGFL" && false)
+    switch 
 
 # # Get current generation metadata
 # current=$(nixos-rebuild list-generations | grep current)

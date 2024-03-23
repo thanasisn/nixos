@@ -5,7 +5,7 @@
     [
       <home-manager/nixos>                 # home manafer for users
       ./crane.nix                          # this host global variables
-      ./hardware-configuration.nix         # results of the hardware scan
+      /etc/nixos/hardware-configuration.nix         # results of the hardware scan
       ../config.d/hmod.nix                 # custom module for host globals
       ../config.d/common_options.nix       # common options for all
       "${builtins.fetchTarball "https://github.com/Mic92/sops-nix/archive/master.tar.gz"}/modules/sops" 
@@ -19,12 +19,13 @@
   # $ nix run home-manager/release-23.11 -- init --switch
   # $ home-manager switch
 
+  nix.settings.experimental-features = [ "nix-command" ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable      = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = config.hmod.hostname; 
+  networking.hostName = config.hmod.hostname;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Enable networking
@@ -61,7 +62,7 @@
   # services.xserver.xkb.options = "eurosign:e,caps:escape";
   # services.xserver.xkbOptions = "caps:swapescape";
   console.useXkbConfig         = true;
-  
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
@@ -132,8 +133,8 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
- 
-  ## update system  
+
+  ## update system
   system.autoUpgrade.enable        = false;
   nix.settings.auto-optimise-store = true;
 

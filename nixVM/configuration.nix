@@ -112,7 +112,6 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
- 
   services.spice-vdagentd.enable = true; 
 
   environment.systemPackages = with pkgs; [
