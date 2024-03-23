@@ -24,9 +24,12 @@ echo "Update..."
 nix-channel -v 3 --update
 
 echo "NixOs Rebuilding and switch..."
+# home-manager switch                 \
+#   -f "$PREFX/home-manager/home.nix" \
+#   switch &> "$BLDFL" || (grep --color error "$LOGFL" && false)
 home-manager switch                 \
   -f "$PREFX/home-manager/home.nix" \
-    switch &> "$BLDFL" || (grep --color error "$LOGFL" && false)
+  switch
 
 echo "Remove old generations..."
 "$PREFX/scripts/trim-generation.sh" 20 20 home-manager

@@ -33,7 +33,7 @@ nixos-rebuild                                          \
 # git commit -am "$(hostname) $current"
 
 echo "Remove old generations..."
-"$PREFX/scripts/trim-generation.sh" 20 20 system
+"$PREFX/scripts/trim-generation.sh" 30 30 system
 
 echo "Delete unreachable paths in the Nix store..."
 nix store gc
