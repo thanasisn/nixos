@@ -31,7 +31,7 @@ nixos-rebuild                                          \
 # git commit -am "$(hostname) $current"
 
 echo "Remove old generations..."
-"$PREFX/scripts/trim-generation.sh" 30 30 system
+"$PREFX/scripts/trim-generation.sh" 20 20 system
 
 echo "Delete unreachable paths in the Nix store..."
 nix store gc
@@ -48,6 +48,9 @@ nix-collect-garbage
 
 echo "Display last changes..."
 "$PREFX/scripts/changes_system.sh"
+
+echo "Nix folder size..."
+du -sh /nix
 
 echo "Nix folder..."
 df -h /nix
