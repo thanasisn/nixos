@@ -6,7 +6,6 @@
   services.grafana.settings.server.http_port = 2342;
   services.grafana.settings.server.http_addr = "127.0.0.1";
 
-
   ## nginx reverse proxy
   services.nginx.virtualHosts.${config.services.grafana.settings.server.domain} = {
     locations."/" = {
@@ -14,7 +13,6 @@
         proxyWebsockets = true;
     };
   };
-
 
   ## prometueus motiroring service
   services.prometheus = {
@@ -28,11 +26,11 @@
       node = {
         enable = true;
         enabledCollectors = [
-          # "smartctl"
+          "smartctl"
           "systemd"
           # "textfile"
           # "conntrack"
-          # "diskstats"
+          "diskstats"
           # "entropy"
           # "filefd"
           # "filesystem"
@@ -50,10 +48,14 @@
       ];
         port = 9002;
       };
-      smartctl = {
-        enable = true;
-      };
+#      smartctl = {
+#        enable = true;
+#      };
     };
+
+#   services.prometheus.exporters.smartctl = {
+#    enable = true;
+#   };
 
    scrapeConfigs = [
      {
@@ -80,6 +82,17 @@
 #      '';
 #    };
 #  };
+
+
+  ## test munin
+  services.munin-node.enable = true;
+  services.munin-cron.enable = true;
+  services.munin-cron.hosts  =''
+    [${config.networking.hostName}]
+    address localhost
+  '';
+
+
 
 }
 
