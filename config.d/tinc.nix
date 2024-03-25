@@ -41,8 +41,8 @@
 
     #ed25519PrivateKeyFile = config.sops.secrets.tinc-ed25519.path;
     rsaPrivateKeyFile = config.sops.secrets."tinc_${config.hmod.tincnet1}/rsapriv".path;
-                                              
-    extraConfig   = ''                                
+
+    extraConfig   = ''
       # check AutoConnect as alternative option.
       ConnectTo  = sagan
 
@@ -52,7 +52,7 @@
       nixVM = ''
 
         Subnet = 10.12.12.88
-         
+
         -----BEGIN RSA PUBLIC KEY-----
         MIICCgKCAgEA3JlzQd8FnWuuHR8Y8WD1vcrggZv2b4b104vjbI4W2P3o3AjKQ0LC
         /eTVl56wh5AJNKAGjPkmfv9g3kNyfbmqrbPNOzdXEQ3b3JJCDSfDs0JD71tKEeHf
@@ -70,10 +70,10 @@
 
       sagan = ''
         ## sagan ##
-        
+
         Address = 155.207.9.214
         Subnet  = 10.12.12.5
-        
+
         -----BEGIN RSA PUBLIC KEY-----
         MIIECgKCBAEAv1x7dkfP6CAdaUlhD3yzNCx//mJz5ADoomn5IHPmR2DePtwCYUuG
         Exo7ekeDcViB0IGAJ8G9VJglQv2adz+VyAukYrmdqpFlXgIGw+uws/8xB0lO5jt+
@@ -102,7 +102,7 @@
 
       crane = ''
         ## crane ##
-        
+
         Subnet = 10.12.12.1
 
         -----BEGIN RSA PUBLIC KEY-----
@@ -114,6 +114,28 @@
         hkE4hGlFrI4R1pyJVFi2d5Ao3pbYQN/O5wIDAQAB
         -----END RSA PUBLIC KEY-----
         '';
+
+      tyler = ''
+
+        ##  tyler  ##
+
+        Subnet  = 10.12.12.6
+        Address = 100.119.4.3
+
+        -----BEGIN RSA PUBLIC KEY-----
+        MIICCgKCAgEAqaiU25K246NjCJQTIchsqeiEVk0uMXcY+UcEZlM29DoX7vZUVfD8
+        vYt8gLQY75G5rBnf2J6tMNyoioJ1cBnPJhAMbMsuUp+JDgp/MViwvGW79CftC6RV
+        u7HESPF/u4nynVQOzzCobLVJ9GMeumj+cyJ6dv8ZzJbaWfFYITNZWQlOmrljUmYK
+        yQgnvtd9VBMuSX1NmNpafyck/3/qyqAHFhRmSnsWAU7vzCQdOqNolVaEYwCQ7SdL
+        cY3GDs3WixYQ031Zulq22EaxKlNRkfAWaZQASUiUSrd3SjTZqSsemMpU8jeOPLdx
+        qFhrYF/t35u3eaxrI27B8KbwZgqDXfCUAMPOMRS353cjY+JoUkBo6gMiyqqzNHdQ
+        G4xuRMBAF5gMGk+m7SkrJMjflLT5ZRjDDmHBOndvpRamDCJ0+5I4HP1QKO04VQ1T
+        U+1erObM0+EFU/anwzyk9hIiovOWkYHZSAuHpqIF3ovpHuPlEoXCe7g7rbWA0ZRm
+        fc1Qgw5ouHpGNDRM39dIpQspioSFkMygRfBfi3eNSLzOmJlzQIBsookzZXvc0URz
+        HmB2AOfubdif5ZK6T+04WeyM9LjThlJvrZ79QnKdsryesC+IXpi3KIMcc5qejvvC
+        CwHoC4J5X/kLuXh0atfqzZdgvBB+2q9dxgTGuUdvYZPcQVIn74D/rmsCAwEAAQ==
+        -----END RSA PUBLIC KEY-----
+      '';
     };
   };
 
