@@ -56,6 +56,11 @@
   documentation.info.enable  = false;
   documentation.doc.enable   = false;
 
+  # enalbe tailscale  
+  services.tailscale.enable = true;
+  # tailscale usable to users
+  environment.systemPackages = [ pkgs.tailscale ];
+
   # NTP servises
   networking.timeServers =
     options.networking.timeServers.default ++

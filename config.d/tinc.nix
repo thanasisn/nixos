@@ -6,6 +6,13 @@
   sops.secrets."tinc_${config.hmod.tincnet1}/rsapriv" = {};
   sops.secrets."tinc_${config.hmod.tincnet1}/rsapub"  = {};
 
+  sops.secrets."tinc_${config.hmod.tincnet1}/hosts/yperos" = {
+   owner = "tinc.${config.hmod.tincnet1}";
+   path  = "/etc/tinc/${config.hmod.tincnet1}/hosts/yperos";
+};
+
+
+
   ## simple interface setup
   networking.interfaces."tinc.${config.hmod.tincnet1}".ipv4.addresses =
    [ { address = config.hmod.cosmosip; prefixLength = 24; } ];
@@ -41,8 +48,8 @@
 
     #ed25519PrivateKeyFile = config.sops.secrets.tinc-ed25519.path;
     rsaPrivateKeyFile = config.sops.secrets."tinc_${config.hmod.tincnet1}/rsapriv".path;
-
-    extraConfig   = ''
+                                              
+    extraConfig   = ''                                
       # check AutoConnect as alternative option.
       ConnectTo  = sagan
 
@@ -52,7 +59,7 @@
       nixVM = ''
 
         Subnet = 10.12.12.88
-
+         
         -----BEGIN RSA PUBLIC KEY-----
         MIICCgKCAgEA3JlzQd8FnWuuHR8Y8WD1vcrggZv2b4b104vjbI4W2P3o3AjKQ0LC
         /eTVl56wh5AJNKAGjPkmfv9g3kNyfbmqrbPNOzdXEQ3b3JJCDSfDs0JD71tKEeHf
@@ -115,27 +122,6 @@
         -----END RSA PUBLIC KEY-----
         '';
 
-      tyler = ''
-
-        ##  tyler  ##
-
-        Subnet  = 10.12.12.6
-        Address = 100.119.4.3
-
-        -----BEGIN RSA PUBLIC KEY-----
-        MIICCgKCAgEAqaiU25K246NjCJQTIchsqeiEVk0uMXcY+UcEZlM29DoX7vZUVfD8
-        vYt8gLQY75G5rBnf2J6tMNyoioJ1cBnPJhAMbMsuUp+JDgp/MViwvGW79CftC6RV
-        u7HESPF/u4nynVQOzzCobLVJ9GMeumj+cyJ6dv8ZzJbaWfFYITNZWQlOmrljUmYK
-        yQgnvtd9VBMuSX1NmNpafyck/3/qyqAHFhRmSnsWAU7vzCQdOqNolVaEYwCQ7SdL
-        cY3GDs3WixYQ031Zulq22EaxKlNRkfAWaZQASUiUSrd3SjTZqSsemMpU8jeOPLdx
-        qFhrYF/t35u3eaxrI27B8KbwZgqDXfCUAMPOMRS353cjY+JoUkBo6gMiyqqzNHdQ
-        G4xuRMBAF5gMGk+m7SkrJMjflLT5ZRjDDmHBOndvpRamDCJ0+5I4HP1QKO04VQ1T
-        U+1erObM0+EFU/anwzyk9hIiovOWkYHZSAuHpqIF3ovpHuPlEoXCe7g7rbWA0ZRm
-        fc1Qgw5ouHpGNDRM39dIpQspioSFkMygRfBfi3eNSLzOmJlzQIBsookzZXvc0URz
-        HmB2AOfubdif5ZK6T+04WeyM9LjThlJvrZ79QnKdsryesC+IXpi3KIMcc5qejvvC
-        CwHoC4J5X/kLuXh0atfqzZdgvBB+2q9dxgTGuUdvYZPcQVIn74D/rmsCAwEAAQ==
-        -----END RSA PUBLIC KEY-----
-      '';
     };
   };
 

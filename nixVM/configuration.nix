@@ -19,7 +19,7 @@
   # $ nix run home-manager/release-23.11 -- init --switch
   # $ home-manager switch
 
-  nix.settings.experimental-features = [ "nix-command" ];
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Bootloader.
   boot.loader.grub.enable = true;
