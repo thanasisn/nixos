@@ -7,11 +7,24 @@
   sops.secrets."tinc_${config.hmod.tincnet1}/rsapub"  = {};
 
   sops.secrets."tinc_${config.hmod.tincnet1}/hosts/yperos" = {
-   owner = "tinc.${config.hmod.tincnet1}";
-   path  = "/etc/tinc/${config.hmod.tincnet1}/hosts/yperos";
-};
+    owner = "tinc.${config.hmod.tincnet1}";
+    path  = "/etc/tinc/${config.hmod.tincnet1}/hosts/yperos";
+  };
 
+  sops.secrets."tinc_${config.hmod.tincnet1}/hosts/tyler" = {
+    owner = "tinc.${config.hmod.tincnet1}";
+    path  = "/etc/tinc/${config.hmod.tincnet1}/hosts/tyler";
+  };
 
+  sops.secrets."tinc_${config.hmod.tincnet1}/hosts/sagan" = {
+    owner = "tinc.${config.hmod.tincnet1}";
+    path  = "/etc/tinc/${config.hmod.tincnet1}/hosts/sagan";
+  };
+
+  sops.secrets."tinc_${config.hmod.tincnet1}/hosts/blue" = {
+    owner = "tinc.${config.hmod.tincnet1}";
+    path  = "/etc/tinc/${config.hmod.tincnet1}/hosts/blue";
+  };
 
   ## simple interface setup
   networking.interfaces."tinc.${config.hmod.tincnet1}".ipv4.addresses =
@@ -27,17 +40,6 @@
   #         /run/wrappers/bin/sudo ${pkgs.nettools}/bin/ifconfig $INTERFACE down
   #     '';
   # };
-  # security.sudo.extraRules = [
-  #   {
-  #     users    = [ "tinc.${myMeshName}" ];
-  #     commands = [
-  #       {
-  #         command  = "${pkgs.nettools}/bin/ifconfig";
-  #         options  = [ "NOPASSWD" ];
-  #       }
-  #     ];
-  #   }
-  # ];
 
   ## configure tinc
   services.tinc.networks."${config.hmod.tincnet1}"= {
@@ -75,37 +77,37 @@
         -----END RSA PUBLIC KEY-----
         '';
 
-      sagan = ''
-        ## sagan ##
-
-        Address = 155.207.9.214
-        Subnet  = 10.12.12.5
-
-        -----BEGIN RSA PUBLIC KEY-----
-        MIIECgKCBAEAv1x7dkfP6CAdaUlhD3yzNCx//mJz5ADoomn5IHPmR2DePtwCYUuG
-        Exo7ekeDcViB0IGAJ8G9VJglQv2adz+VyAukYrmdqpFlXgIGw+uws/8xB0lO5jt+
-        iS8oTz79UL5geUKxNj25FuLRf/luloBpQmBDJ6rVOwBa+Y6uDKYDObJFxBs9WFaF
-        Kfdk9cAXj9iFCQ1awhMWOeYbJnoL9kQxZVJrwGCMfEO/L/mgoEMUok8S6XwV8JFC
-        7/8H/2edieNo0WhPWvW60xG0TkX2Kx4hDWaSF2BcCSpY1n3zcunPDY62sxI2m8U5
-        lV7tn2UDoz6eOhIs0Lkrd88ZMw2LA6G70b8Is2uNRy8jUjY02vuarP0g75rrEGSH
-        ZSBEJtSrPTgX//fb09pTEjGIrbzjSqau9/GFC22wrvg5VPMGLPkUOd/9/Q6pfROI
-        u/jCr/MxjNSQkjfgSjoiJK+C8UzhNfZLMrdH1VuNRuDZOukhJ0EksUTpy5x7WddG
-        S4Dpl3KbfwoDYICPQnzlzb9gp8KwM2w5OnlimiREyiDT9F/WPiEhA/99qEwuFqC1
-        KJiI3A4TstMnv9tzmxw8jbN14WElRB2Rb6WQu7j+BVpfuqlBDpfvFnjLsB/LEcXA
-        ErGTWC95JUENT43GgZS2rvZqTrGNrcaIhyQqfrTzYU4ST+sSRJKBNri5Cam7mrWr
-        q89xxcvZHoTInt6WhMZa2SoGEbM1Wpw/tANdrl2BU5iVeM0FJmY/zbTzd5bbXCXr
-        wjkX7l/pbpZM0VjGLA2r/eeMokc1gysyfuyF6jpra/e18gpwhhgIZ82eCWB+2Pe3
-        mkwLmp2O6aN/usmSsP55Mp6TTbgZfsRt6L60i+LLZ1E7bxsbrBwXJnF1kOaf7KhW
-        lowW6zCVhHqV0FVHHJ0BFhM2lg3/tXpLZy1iJ8p2v8LsrpRt8J8O1C2bTRKYe+YE
-        NuaZD32SyARIZRTSDZ/IT1Re18MJ8hIlv+pVwKZ6gS9AOdoSW3YZ3Aq9hYtJk14A
-        TAUcFJrk84FfudKQdud9zdLPcokLjyG/sUQuU3+TjX+LMfFc8JitIewXV0Frx6U+
-        Ovl5BMjCQ9JX0EFkPT8d/njwCm059FjuDVgVWsWDZQuai+rB38sutg5xMt5Z1CP3
-        ksy7edwOqm9G9sFH2o39AYkJJs/RHJN4SIu+7U4UJrptDR3o9KBorijbrAZU8JiE
-        DtC1sWuD/QZEaKrBO/Sm79rqak36MQc7h9MgJ61XqI89HH3RueYk2blaWOThRS3z
-        xJ/W8bNgeR4JXMFysI4SJzuYV0WwruHUgiwlLtvNhvmtmyfa454el9snrHslWgil
-        DY/QKyIBPewFFOcPdB0YX4Dddeq821zS4QIDAQAB
-        -----END RSA PUBLIC KEY-----
-      '';
+#       sagan = ''
+#         ## sagan ##
+# 
+#         Address = 155.207.9.214
+#         Subnet  = 10.12.12.5
+# 
+#         -----BEGIN RSA PUBLIC KEY-----
+#         MIIECgKCBAEAv1x7dkfP6CAdaUlhD3yzNCx//mJz5ADoomn5IHPmR2DePtwCYUuG
+#         Exo7ekeDcViB0IGAJ8G9VJglQv2adz+VyAukYrmdqpFlXgIGw+uws/8xB0lO5jt+
+#         iS8oTz79UL5geUKxNj25FuLRf/luloBpQmBDJ6rVOwBa+Y6uDKYDObJFxBs9WFaF
+#         Kfdk9cAXj9iFCQ1awhMWOeYbJnoL9kQxZVJrwGCMfEO/L/mgoEMUok8S6XwV8JFC
+#         7/8H/2edieNo0WhPWvW60xG0TkX2Kx4hDWaSF2BcCSpY1n3zcunPDY62sxI2m8U5
+#         lV7tn2UDoz6eOhIs0Lkrd88ZMw2LA6G70b8Is2uNRy8jUjY02vuarP0g75rrEGSH
+#         ZSBEJtSrPTgX//fb09pTEjGIrbzjSqau9/GFC22wrvg5VPMGLPkUOd/9/Q6pfROI
+#         u/jCr/MxjNSQkjfgSjoiJK+C8UzhNfZLMrdH1VuNRuDZOukhJ0EksUTpy5x7WddG
+#         S4Dpl3KbfwoDYICPQnzlzb9gp8KwM2w5OnlimiREyiDT9F/WPiEhA/99qEwuFqC1
+#         KJiI3A4TstMnv9tzmxw8jbN14WElRB2Rb6WQu7j+BVpfuqlBDpfvFnjLsB/LEcXA
+#         ErGTWC95JUENT43GgZS2rvZqTrGNrcaIhyQqfrTzYU4ST+sSRJKBNri5Cam7mrWr
+#         q89xxcvZHoTInt6WhMZa2SoGEbM1Wpw/tANdrl2BU5iVeM0FJmY/zbTzd5bbXCXr
+#         wjkX7l/pbpZM0VjGLA2r/eeMokc1gysyfuyF6jpra/e18gpwhhgIZ82eCWB+2Pe3
+#         mkwLmp2O6aN/usmSsP55Mp6TTbgZfsRt6L60i+LLZ1E7bxsbrBwXJnF1kOaf7KhW
+#         lowW6zCVhHqV0FVHHJ0BFhM2lg3/tXpLZy1iJ8p2v8LsrpRt8J8O1C2bTRKYe+YE
+#         NuaZD32SyARIZRTSDZ/IT1Re18MJ8hIlv+pVwKZ6gS9AOdoSW3YZ3Aq9hYtJk14A
+#         TAUcFJrk84FfudKQdud9zdLPcokLjyG/sUQuU3+TjX+LMfFc8JitIewXV0Frx6U+
+#         Ovl5BMjCQ9JX0EFkPT8d/njwCm059FjuDVgVWsWDZQuai+rB38sutg5xMt5Z1CP3
+#         ksy7edwOqm9G9sFH2o39AYkJJs/RHJN4SIu+7U4UJrptDR3o9KBorijbrAZU8JiE
+#         DtC1sWuD/QZEaKrBO/Sm79rqak36MQc7h9MgJ61XqI89HH3RueYk2blaWOThRS3z
+#         xJ/W8bNgeR4JXMFysI4SJzuYV0WwruHUgiwlLtvNhvmtmyfa454el9snrHslWgil
+#         DY/QKyIBPewFFOcPdB0YX4Dddeq821zS4QIDAQAB
+#         -----END RSA PUBLIC KEY-----
+#       '';
 
       crane = ''
         ## crane ##

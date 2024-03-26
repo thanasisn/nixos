@@ -7,6 +7,7 @@
     btrfs-progs
     coreutils
     curl
+    ntfs3g
     ddrescue
     encfs
     fdupes
