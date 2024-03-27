@@ -7,21 +7,20 @@
   sops.secrets."tinc_${config.hmod.tincnet1}/rsapub"  = {};
 
   ## create hosts files
-  ## TEST without statics
-  # sops.secrets."tinc_${config.hmod.tincnet1}/hosts/yperos" = {
-  #   owner = "tinc.${config.hmod.tincnet1}";
-  #   path  = "/etc/tinc/${config.hmod.tincnet1}/hosts/yperos";
-  # };
+  sops.secrets."tinc_${config.hmod.tincnet1}/hosts/yperos" = {
+    owner = "tinc.${config.hmod.tincnet1}";
+    path  = "/etc/tinc/${config.hmod.tincnet1}/hosts/yperos";
+  };
 
   sops.secrets."tinc_${config.hmod.tincnet1}/hosts/tyler" = {
     owner = "tinc.${config.hmod.tincnet1}";
     path  = "/etc/tinc/${config.hmod.tincnet1}/hosts/tyler";
   };
 
-  # sops.secrets."tinc_${config.hmod.tincnet1}/hosts/sagan" = {
-  #   owner = "tinc.${config.hmod.tincnet1}";
-  #   path  = "/etc/tinc/${config.hmod.tincnet1}/hosts/sagan";
-  # };
+  sops.secrets."tinc_${config.hmod.tincnet1}/hosts/sagan" = {
+    owner = "tinc.${config.hmod.tincnet1}";
+    path  = "/etc/tinc/${config.hmod.tincnet1}/hosts/sagan";
+  };
 
   sops.secrets."tinc_${config.hmod.tincnet1}/hosts/blue" = {
     owner = "tinc.${config.hmod.tincnet1}";
@@ -38,9 +37,9 @@
     path  = "/etc/tinc/${config.hmod.tincnet1}/hosts/crane";
   };
 
-  sops.secrets."tinc_${config.hmod.tincnet1}/hosts/nixvm" = {
+  sops.secrets."tinc_${config.hmod.tincnet1}/hosts/nixVM" = {
     owner = "tinc.${config.hmod.tincnet1}";
-    path  = "/etc/tinc/${config.hmod.tincnet1}/hosts/nixvm";
+    path  = "/etc/tinc/${config.hmod.tincnet1}/hosts/nixVM";
   };
 
   ## simple interface setup for this host
@@ -69,17 +68,15 @@
     rsaPrivateKeyFile = config.sops.secrets."tinc_${config.hmod.tincnet1}/rsapriv".path;
 
     extraConfig   = ''
-      # check AutoConnect as alternative option.
-      # AutoConnect = yes
+      AutoConnect    = yes
       LocalDiscovery = yes
 
-      ## TEST without statics
-      # ConnectTo      = sagan
-      # ConnectTo      = yperos
+      ConnectTo      = sagan
+      ConnectTo      = yperos
       ConnectTo      = blue
       ConnectTo      = crane
       ConnectTo      = kostas
-      ConnectTo      = nixvm
+      ConnectTo      = nixVM
       ConnectTo      = tyler
 
       GraphDumpFile  = /dev/shm/tinc.dot
@@ -88,18 +85,8 @@
 
 #       nixVM = ''
 #         Subnet = 10.12.12.88
-# 
 #         -----BEGIN RSA PUBLIC KEY-----
 #         MIICCgKCAgEA3JlzQd8FnWuuHR8Y8WD1vcrggZv2b4b104vjbI4W2P3o3AjKQ0LC
-#         /eTVl56wh5AJNKAGjPkmfv9g3kNyfbmqrbPNOzdXEQ3b3JJCDSfDs0JD71tKEeHf
-#         pl62g7VgpYIHGZFoOobimy+q8WQZeet2NdE4R2ijVUTYaNEa16SfP6cm6D4O0NPG
-#         F2Rvcl1bGLRYrI3PUm9n30Ph1nplYCfZFltzydHAHIntgvdHNkXw5tZImbTe+pbp
-#         DWhiz0Z5oGZYuerG2Wyoac3bv5SZz0x79IIX74bMJ4ntFi7hpMJeGJgPv76zPjQ7
-#         6OprV4uM6byNQ81NN7dAPTIOlfwaDTfzfPYYYx0iNY5SSLImBzg3Fu0W8lWSNvRk
-#         iN1YPEREFNtyaeFZpgW9M6xqgefW4zoIPkpILOxtLMQIvduoeUV7Q+qOf4XbpzoB
-#         2S6DDfnwjP5QY6kROHxsjXCKT3ckocjFLSWkM4JO14DJZSwK/7r2ArqQF4FEam8N
-#         UoyUJs7iZh7Ak7PtMMOzDYDMCmP9klvHHH6+WdutAthW3qSPYuRhZWiZdD7TjA3K
-#         ATmpvS1x0p3F/V97F5puxUw5hWCvkyMoOvtGKyUogW4005/XO63oqXst9wi7GU00
 #         AXdOKSugFkuwI0vPLVyifPlm9SQmDxFFE2rEnG7IhC3poSRPJgu18WkCAwEAAQ==
 #         -----END RSA PUBLIC KEY-----
 #         '';

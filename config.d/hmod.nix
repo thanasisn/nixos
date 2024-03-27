@@ -1,6 +1,7 @@
 { lib, ... }:
 with lib;
 {
+  ##  Create some variables to used by each host
   options.hmod = {
     hostname = mkOption {
       type = types.str;
@@ -9,7 +10,7 @@ with lib;
     tincnet1 = mkOption {
       type = types.str;
       default = "cosmos";
-      description = "Name of the 1rst tinc network";
+      description = "Name of the 1 rst tinc network";
     };
     cosmosip = mkOption {
       type = types.str;
