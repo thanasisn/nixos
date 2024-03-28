@@ -36,10 +36,9 @@ else
   exit
 fi
 
-# Commit to git
+# Commit to git if exist
 git ls-remote "$PREFX" -q
 gitstatus="$?"
-
 if [ $gitstatus -eq 0 ]; then
   echo "Commit to git"
   git -C "$PREFX" add .
@@ -49,9 +48,6 @@ if [ $gitstatus -eq 0 ]; then
   git -C "$PREFX" push --tag
   git -C "$PREFX" maintenance run --auto
 fi
-
-exit
-
 
 echo "Remove old generations..."
 "$PREFX/scripts/trim-generation.sh" 20 20 home-manager
