@@ -24,18 +24,31 @@ echo "NixOs Rebuilding and switch..."
 # home-manager switch                 \
 #   -f "$PREFX/home-manager/home.nix" \
 #     switch &> "$BLDFL" || (grep --color error "$LOGFL" && false)
-
 home-manager switch                 \
   -f "$PREFX/home-manager/home.nix" \
     switch
-homestatus="$?"
+switchtatus="$?"
 
+if [ $switchtatus -eq 0 ]; then
+  echo "Successful Switch"
+else
+  echo "Switch failed!!"
+  exit
+fi
+
+# Commit to git
 git ls-remote "$PREFX" -q
 gitstatus="$?"
 
-echo "Switch status: $homestatus"
-echo "Git status: $gitstatus"
-
+if [ $gitstatus -eq 0 ]; then
+  echo "Commit to git"
+  git -C "$PREFX" add .
+  ## commit to local repo
+  git -C "$PREFX" commit -uno -a -m "Home-manager switch $(hostname) $(date +'%F %R')"
+  git -C "$PREFX" push -f
+  git -C "$PREFX" push --tag
+  git -C "$PREFX" maintenance run --auto
+fi
 
 exit
 

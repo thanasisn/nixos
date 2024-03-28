@@ -1,0 +1,30 @@
+#!/bin/bash
+
+## No flakes?
+# nix-channel --update
+# home-manager switch
+
+## trim generations
+./trim-generation.sh 30 30 home-manager
+
+## remove nix package manager
+sudo rm -rf /etc/nix /etc/profile.d/nix.sh /etc/tmpfiles.d/nix-daemon.conf /nix ~root/.nix-channels ~root/.nix-defexpr ~root/.nix-profil
+
+## add channels
+nix-channel --add https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz home-manager
+nix-channel --add https://nixos.org/channels/nixos-23.11 nixpkgs 
+
+## use home manager
+nix run nixpkgs\#home-manager -- switch --flake "$HOME/.nix-home/#athan"
+
+
+## show changes last generation
+nix profile diff-closures --profile ~/.local/state/nix/profiles/home-manager
+
+## show changes more usefull
+nix profile history
+
+## show diff
+nvd diff .local/state/nix/profiles/home-manager-15-link .local/state/nix/profiles/home-manager-14-link
+ls /nix/var/nix/profiles | tail -n 2 | awk '{print "/nix/var/nix/profiles/" $0}' - | xargs nvd diff
+
