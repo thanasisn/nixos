@@ -21,9 +21,24 @@ exec  > >(tee -i "${LOGFL}")
 exec 2> >(tee -i "${ERRFL}" >&2)
 
 echo "NixOs Rebuilding and switch..."
+# home-manager switch                 \
+#   -f "$PREFX/home-manager/home.nix" \
+#     switch &> "$BLDFL" || (grep --color error "$LOGFL" && false)
+
 home-manager switch                 \
   -f "$PREFX/home-manager/home.nix" \
-    switch &> "$BLDFL" || (grep --color error "$LOGFL" && false)
+    switch
+homestatus="$?"
+
+git ls-remote "$PREFX" -q
+gitstatus="$?"
+
+echo "Switch status: $homestatus"
+echo "Git status: $gitstatus"
+
+
+exit
+
 
 echo "Remove old generations..."
 "$PREFX/scripts/trim-generation.sh" 20 20 home-manager
